@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div class="mb-4 p-3 osahan-cart-item">
+  <div class="osahan-cart-item-profile bg-white rounded shadow p-3 cart-resize">
+    <div class="flex-column">
+      <h6 class="font-weight-bold">Please verify your email address here</h6>
+      <form [formGroup]="contactForm" (ngSubmit)="submitContact(contactForm)" novalidate>
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Email Address</mat-label>
+            <input matInput formControlName="email" [ngClass]="{'has-error': formErrors.email}" >
+            <mat-error *ngIf="formErrors.email" [innerHTML]="formErrors.email"></mat-error>
+          </mat-form-field>
+        </div>
+        <button type="submit" class="btn btn-primary" >SUBMIT</button>
+      </form>
+      <div class="alert alert-primary mt-3" role="alert">
+        An email is sent to your entered email address, please visit the page given in email.
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

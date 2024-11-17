@@ -1,0 +1,81 @@
+.housekeep-main {
+    border-radius: 20px;
+    background-color: #dadee5;
+    width: 100%;
+    height: 100%;
+}
+
+.housekeep-upper-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: var(--msmall);
+    font-weight: bold;
+    font-family: var(--font-one);
+    margin: 1em;
+}
+
+.housekeep-status {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+}
+
+app-housekeeping-card {
+    margin: 0.5em;
+}
+
+.filter-title {
+    font-size: var(--xsmall);
+    font-family: var(--font-one);
+    color: var(--color-two);
+    margin-bottom: .25em;
+}
+
+.filter {
+    margin-left: 1em;
+    width: 120px;
+    /* margin-right: 1em; */
+}
+
+.filter-button {
+    width: 100%;
+    background-color: var(--color-eleven);
+    border: none;
+    text-align: left;
+    font-family: var(--font-one);
+    color: var(--color-two);
+    padding: .5em .75em;
+    border-radius: var(--normal-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-dropdown-list {
+    padding: 0px;
+    margin-top: 0px;
+    list-style: none;
+    border-radius: var(--normal-radius);
+    background-color: var(--color-eleven);
+}
+
+.filter-dropdown-list-item {
+    font-family: var(--font-one);
+    color: var(--color-two);
+    padding: .5em .75em;
+    border-radius: var(--normal-radius);
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.filter-dropdown-list-item:hover {
+    background-color: var(--color-four);
+    color: var(--color-eleven)
+}

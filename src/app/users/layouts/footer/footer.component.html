@@ -1,0 +1,101 @@
+<div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center" id="mobile-tabs">
+  <div class="row">
+    <div class="col" routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="selected">
+      <a href="javascript:void(0)" class="
+          small
+          font-weight-bold
+          text-decoration-none
+        ">
+        <p class="h4 m-0"><i class="feather-home"></i></p>
+        Home
+      </a>
+    </div>
+    <div class="col" routerLink="/rooms" routerLinkActive="selected">
+      <a href="javascript:void(0)" class="small font-weight-bold text-decoration-none">
+        <p class="h4 m-0"><i class="feather-map-pin"></i></p>
+        Rooms
+      </a>
+    </div>
+    <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+      <div class="bg-primary rounded-circle mt-n0 shadow bg-primary-blue" routerLink="/cart">
+        <span id="totalcartitem" class="cart-pop"
+          *ngIf="dataProvider.loggedIn && cartProducts?.length > 0">{{cartProducts?.length}}</span>
+        <a class="text-white small font-weight-bold text-decoration-none">
+          <i class="feather-shopping-cart"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col" routerLink="/contact-us" routerLinkActive="selected">
+      <a href="javascript:void(0)" class="small font-weight-bold text-decoration-none">
+        <p class="h4 m-0"><i class="feather-book-open"></i></p>
+        Contact us
+      </a>
+    </div>
+    <div class="col" routerLink="/sign-up" routerLinkActive="selected" *ngIf="!dataProvider.loggedIn">
+      <a href="javascript:void(0)" routerLink="/sign-up" class="small font-weight-bold text-decoration-none">
+        <p class="h4 m-0"><i class="feather-user"></i></p>
+        Signup
+      </a>
+    </div>
+    <div class="col" routerLink="/sign-up" routerLinkActive="selected" *ngIf="dataProvider.loggedIn">
+      <a href="javascript:void(0)" routerLink="/account" class="small font-weight-bold text-decoration-none">
+        <p class="h4 m-0"><i class="feather-user"></i></p>
+        Account
+      </a>
+    </div>
+  </div>
+</div>
+<div class="bg-white shadow" id="desktop-tabs">
+  <div class="container">
+    <footer class="row row-cols-5 py-5 mt-5 border-top ">
+      <div class="col-5">
+        <a href="/" class="mb-3 pl-3 link-dark text-decoration-none">
+          <img src="assets/img/logo-hts.jpeg" width="200px" class="img-fluid mb-2"  /> <br>
+          <img src="assets/img/dosa-plaza.png" width="200px" class="img-fluid" />
+        </a>
+        <p class="text-muted mt-2 pl-3">&copy; 2022 Triveni Sangam Hotel</p>
+        <div class="font-weight-bold ss-contact-head pr-0 col-3 col-md-4">
+          <div class="text-white font-weight-bold">
+            <a class="text-white" href="#"><img src="assets/img/phone-call.svg" class="text-white" /></a>
+            <a class="text-white" href="https://www.facebook.com/Trivenisangamdosaplaza/"><img src="assets/img/facebook.svg"
+                class="text-white" /></a>
+            <a class="text-white" href="https://www.facebook.com/Trivenisangamdosaplaza/"><img
+                src="assets/img/instagram.svg" class="text-white" /></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <h5>Visit</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="javascript:void(0)" routerLink="/" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="javascript:void(0)" routerLink="/rooms" class="nav-link p-0 text-muted">Book Rooms</a></li>
+          <li class="nav-item mb-2"><a href="javascript:void(0)" routerLink="/contact-us" class="nav-link p-0 text-muted">Contact us</a></li>
+          <li class="nav-item mb-2"><a href="javascript:void(0)" routerLink="/feedbacks" class="nav-link p-0 text-muted">feedbacks</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <h5>Account</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2" *ngIf="!dataProvider.loggedIn"><a href="javascript:void(0)" routerLink="/sign-up" class="nav-link p-0 text-muted">My Account</a></li>
+          <li class="nav-item mb-2" *ngIf="dataProvider.loggedIn"><a href="javascript:void(0)" routerLink="/account" class="nav-link p-0 text-muted">My Account</a></li>
+          <li class="nav-item mb-2" *ngIf="dataProvider.loggedIn"><a href="javascript:void(0)" routerLink="/account/my-orders" class="nav-link p-0 text-muted">My Orders</a></li>
+          <li class="nav-item mb-2" *ngIf="dataProvider.loggedIn && dataProvider?.userData?.access === 'Admin'"><a href="javascript:void(0)" routerLink="ProductManager/dashboard" class="nav-link p-0 text-muted">Food Panel</a></li>
+          <li class="nav-item mb-2" *ngIf="dataProvider.loggedIn && dataProvider?.userData?.access === 'Admin'"><a href="javascript:void(0)" routerLink="RoomManager/dashboard" class="nav-link p-0 text-muted">Rooms Panel</a></li>
+        </ul>
+      </div>
+
+      <div class="col-3">
+        <h5>User Terms</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="javascript:void(0)" routerLink="/terms-conditions" class="nav-link p-0 text-muted">Terms-conditions</a></li>
+          <li class="nav-item mb-2"><a href="javascript:void(0)" routerLink="/privacy-policy" class="nav-link p-0 text-muted">Privacy-policy</a></li>
+          <li class="nav-item mb-2"><a href="javascript:void(0)" routerLink="/return-policy" class="nav-link p-0 text-muted">Return-policy</a></li>
+          <li class="nav-item mb-2"><a href="javascript:void(0)" routerLink="/disclaimer" class="nav-link p-0 text-muted">Disclaimer</a></li>
+          <li class="nav-item mb-2"><a href="javascript:void(0)" routerLink="/faqs" class="nav-link p-0 text-muted">FAQs</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</div>

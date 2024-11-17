@@ -1,0 +1,91 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /contactRequests {
+    	allow create;
+      allow read, write: if isAdmin();
+    }
+    match /contactRequests/{contactRequests} {
+    	allow create;
+      allow read, write: if isAdmin();
+    }
+    match /products {
+    	allow read;
+      allow write: if isAdmin();
+    }
+    match /products/{products} {
+    	allow read;
+      allow write: if isAdmin();
+    }
+    match /siteData/category {
+    	allow read;
+      allow write: if isAdmin();
+    }
+    match /siteData/category/{category} {
+    	allow read;
+      allow write: if isAdmin();
+    }
+    match /siteData/rooms {
+    	allow read, create, update : if isSignedIn();
+    }
+    match /siteData/rooms/{rooms} {
+    	allow read, create, update: if isSignedIn();
+    }
+    match /rooms {
+    	allow read;
+      allow write : if isAdmin();
+    }
+    match /rooms/{room} {
+    	allow read;
+      allow write: if isAdmin();
+    }
+    match /rooms/{room}/comments{
+    	allow create, read, update:if isSignedIn();
+      allow write: if isAdmin();
+    }
+    match /rooms/{room}/comments{
+    	allow create, read, update:if isSignedIn();
+      allow write: if isAdmin();
+    }
+    match /users/{user} {
+    	allow create, update, read: if isUser(user) || isAdmin();
+    }
+    match /users/{user}/cart{
+    	allow create, update, read: if isUser(user) || isAdmin();
+    }
+    match /users/{user}/cart/{cart} {
+    	allow create, update, read: if isUser(user) || isAdmin();
+    }
+    match /users/{user}/orders{
+    	 allow read: if isAdmin() || isUser(user);
+    }
+    match /users/{users}/orders/{orders}{
+    	allow read, update;
+      allow write: if isAdmin();
+    }
+    match /feedbacks {
+    	allow create;
+      allow read, write: if isAdmin();
+    }
+    match /feedbacks/{feedback} {
+    	allow create;
+      allow read, write: if isAdmin();
+    }
+    function isAdmin(){
+    	return getUserData().access=='Admin'
+    }
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Does the logged-in user match the requested userId?
+    function isUser(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Fetch a user from Firestore
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data
+    }
+  }
+}

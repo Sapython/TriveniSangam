@@ -1,0 +1,317 @@
+<div class="guest-upper-bar">
+  <h1>Bookings</h1>
+  <div style="display: flex">
+    <span style="margin-left: auto; text-align: right">
+      <button
+        type="button"
+        class="primary-btn"
+        id="add-booking-btn"
+        (click)="openAddBookingModal()"
+      >
+        <i class="fa-solid fa-plus"></i> Add Booking
+      </button>
+    </span>
+  </div>
+</div>
+
+<section class="guest-main">
+  <div class="guest-status" style="overflow-x: auto">
+    <table class="guest-status-table">
+      <thead>
+        <tr>
+          <th>S. No.</th>
+          <th>Check-in</th>
+          <th>Check-out</th>
+          <th>Room No.</th>
+          <th>Guest</th>
+          <th>Payment</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="bookings && bookings.length != 0; else noBookings">
+        <tr *ngFor="let booking of bookings; let i = index">
+          <td>{{ i + 1 }}.</td>
+          <td>{{ roomNumbers[booking.roomId] }}</td>
+          <td>{{ guests[booking.guests[0]]?.name }}</td>
+          <td>{{ getTime(booking.checkInTime) }}</td>
+          <td>
+            <ng-container *ngIf="booking.checkOutTime; else checkoutButton">{{
+              getTime(booking.checkOutTime)
+            }}</ng-container>
+            <ng-template #checkoutButton>
+              <button
+                type="button"
+                class="primary-btn"
+                (click)="checkOutBooking = booking"
+                uk-toggle="target: #checkout-confirm-modal"
+              >
+                Checkout Now
+              </button>
+            </ng-template>
+          </td>
+          <td>{{ booking.paymentStatus }}</td>
+          <td>
+            <div class="buttons">
+              <button
+                class="primary-btn"
+                (click)="viewBooking = booking"
+                uk-toggle="target: #view-booking-modal"
+              >
+                <i class="fa-solid fa-eye"></i>View
+              </button>
+              <button
+                class="primary-btn"
+                (click)="bookingToDelete = booking"
+                uk-toggle="target: #delete-confirm-modal"
+              >
+                <i class="fa-solid fa-trash"></i>Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #noBookings>
+        <tbody>
+          <tr>
+            <td colspan="7">No bookings found.</td>
+          </tr>
+        </tbody>
+      </ng-template>
+    </table>
+  </div>
+</section>
+
+<div id="add-booking-modal" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <h2 class="uk-modal-title">Add New Booking</h2>
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <form [formGroup]="bookingForm" (ngSubmit)="submit()">
+      <div id="booking-inputs">
+        <div class="booking-form-box">
+          <label class="manager-label">Check-in Date</label>
+          <div class="time-inputs">
+            <input
+              type="date"
+              class="manager-input"
+              [(ngModel)]="checkInDate"
+              formControlName="checkInDate"
+              (input)="loadAvailableRooms()"
+            />
+            <button type="button" class="primary-btn" (click)="checkInNow()">
+              Now
+            </button>
+          </div>
+        </div>
+        <div class="booking-form-box">
+          <label class="manager-label">Check-out Date (optional)</label>
+          <div class="time-inputs">
+            <input
+              type="date"
+              class="manager-input"
+              [(ngModel)]="checkOutDate"
+              formControlName="checkOutDate"
+              (input)="loadAvailableRooms()"
+            />
+            <button type="button" class="primary-btn" (click)="checkOutNow()">
+              Now
+            </button>
+          </div>
+          <div
+            *ngIf="availableRooms && availableRooms.length"
+            class="booking-form-box"
+          >
+            <label class="manager-label">Room Type</label>
+            <select
+              id="room-type-select"
+              class="manager-input"
+              (change)="onTypeSelect($event)"
+              #roomTypeSelect
+            >
+              <option [ngValue]="null" disabled selected>Select Type</option>
+              <option *ngFor="let type of roomTypes" [value]="type.name">
+                {{ type.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <ng-container *ngIf="typeSelected">
+          <div class="booking-form-box">
+            <label class="manager-label">Room Number</label>
+            <select
+              id="room-select"
+              class="manager-input"
+              (change)="setCurrentRoom()"
+              formControlName="roomId"
+            >
+              <option [ngValue]="null" disabled>Select Room</option>
+              <ng-container *ngFor="let room of availableRooms">
+                <option
+                  *ngIf="typeSelected.name == room.type"
+                  [ngValue]="room.roomId"
+                >
+                  {{ room.number }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="booking-form-box">
+            <label class="manager-label">Guests</label>
+            <ul *ngIf="roomMembers && roomMembers.length > 0" uk-accordion>
+              <li *ngFor="let member of roomMembers; let i = index">
+                <a class="uk-accordion-title" href="#" style="display: block">
+                  <div style="display: flex; align-items: center">
+                    <span>{{ member.name }}</span>
+                    <span *ngIf="i == 0" id="primary-badge">Primary</span>
+                    <button
+                      class="delete-guest"
+                      (click)="deleteGuest(member)"
+                    >
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                </a>
+                <div class="uk-accordion-content">
+                  <p><strong>Name:</strong> {{ member.name }}</p>
+                  <p><strong>Date of Birth:</strong> {{ member.dob | date }}</p>
+                  <p *ngIf="member.phoneNumber">
+                    <strong>Phone Number:</strong> {{ member.phoneNumber }}
+                  </p>
+                  <p *ngIf="member.email">
+                    <strong>Email:</strong> {{ member.email }}
+                  </p>
+                  <p *ngIf="member.address">
+                    <strong>Address:</strong> {{ member.address }}
+                  </p>
+                  <p *ngIf="member.panNumber">
+                    <strong>PAN Card Number:</strong> {{ member.panNumber }}
+                  </p>
+                  <img
+                    *ngIf="member.panImageUrl"
+                    [src]="member.panImageUrl"
+                    alt="PAN Card Image"
+                    width="100"
+                  />
+                  <p *ngIf="member.aadhaarNumber">
+                    <strong>Aadhaar Number:</strong> {{ member.aadhaarNumber }}
+                  </p>
+                  <img
+                    *ngIf="member.aadhaarImageUrl"
+                    [src]="member.aadhaarImageUrl"
+                    alt="Aadhaar Image"
+                    width="100"
+                  />
+                </div>
+              </li>
+            </ul>
+            <button
+              type="button"
+              class="primary-btn"
+              id="add-guest-btn"
+              (click)="addRoomMember()"
+            >
+              <i class="fa-solid fa-plus"></i> Add
+              {{ roomMembers.length == 0 ? "Primary" : "Another" }} Guest
+            </button>
+          </div>
+          <div class="booking-form-box">
+            <label class="manager-label">Room Price</label>
+            <input
+              class="manager-input"
+              type="number"
+              formControlName="roomPrice"
+              [value]="this.currentRoom?.ratePerDay"
+            />
+          </div>
+          <div class="booking-form-box">
+            <label class="manager-label">Payment Status</label>
+            <select class="manager-input" formControlName="paymentStatus">
+              <option [ngValue]="null" disabled>Select Status</option>
+              <option ngValue="Pending">Pending</option>
+              <option ngValue="Done">Done</option>
+            </select>
+          </div>
+        </ng-container>
+      </div>
+      <button type="submit" id="submit-button" class="primary-btn">
+        Add Booking
+      </button>
+    </form>
+  </div>
+</div>
+
+<div id="view-booking-modal" uk-modal (hidden)="viewBooking = null">
+  <div class="uk-modal-dialog uk-modal-body" *ngIf="viewBooking">
+    <h2 class="uk-modal-title">Booking ID {{ viewBooking.bookingId }}</h2>
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <div class="booking-form-box">
+      <label class="manager-label">Room Number</label>
+      <p class="manager-input">{{ roomNumbers[viewBooking.roomId] }}</p>
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label">Phone Number</label>
+      <p class="manager-input">
+        {{ guests[viewBooking.guestId]?.phoneNumber }}
+      </p>
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label">Guests</label>
+      <div *ngFor="let guest of viewBooking.persons" class="guest-inputs">
+        <p class="manager-input guest-input">{{ guest.name }}</p>
+        <p class="manager-input guest-input">{{ getDate(guest.dob) }}</p>
+      </div>
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label">Check-in Time</label>
+      <p class="manager-input">{{ getTime(viewBooking.checkInTime) }}</p>
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label">Check-out Time</label>
+      <p class="manager-input">{{ getTime(viewBooking.checkOutTime) }}</p>
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label">Payment Status</label>
+      <p class="manager-input">{{ viewBooking.paymentStatus }}</p>
+    </div>
+  </div>
+</div>
+
+<div id="checkout-confirm-modal" uk-modal (hidden)="checkOutBooking = null">
+  <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <p class="confirm-text">
+      Confirm check-out of Room
+      {{ checkOutBooking ? roomNumbers[checkOutBooking.roomId] : "" }}?
+    </p>
+    <div class="buttons">
+      <button
+        type="button"
+        class="primary-btn confirm-btn"
+        (click)="checkOutRoomNow()"
+      >
+        Yes
+      </button>
+      <button type="button" class="primary-btn confirm-btn uk-modal-close">
+        No
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="delete-confirm-modal" uk-modal (hidden)="bookingToDelete = null">
+  <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <p class="confirm-text">Confirm delete?</p>
+    <div class="buttons">
+      <button
+        type="button"
+        class="primary-btn confirm-btn"
+        (click)="deleteBooking()"
+      >
+        Yes
+      </button>
+      <button type="button" class="primary-btn confirm-btn uk-modal-close">
+        No
+      </button>
+    </div>
+  </div>
+</div>

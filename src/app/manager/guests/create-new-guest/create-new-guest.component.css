@@ -1,0 +1,141 @@
+#header {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0px 20px;
+}
+#icons {
+  display: flex;
+  gap: 20px;
+  color: var(--color-two);
+}
+#icons i {
+  height: 25px;
+  width: 25px;
+}
+
+.guest-main {
+  margin-top: 30px;
+  border-radius: 20px;
+  background-color: #dadee5;
+  width: 100%;
+  height: 100%;
+}
+
+.rows {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 50px;
+  margin: 15px 0px;
+  gap: 30px;
+}
+.rows b {
+  width: 150px;
+}
+.input_conatiner {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 18px;
+}
+
+.input_conatiner  input{
+    border-radius: 8px;
+    border: 1px solid var(--color-two);
+   padding: 5px;
+   font-size: 15px;
+
+}
+
+#guest{
+    width: 80px; 
+    margin: 0px;
+
+}
+button{
+    display: flex;
+    gap:20px;
+    align-items: center;
+    justify-content: center;
+}
+
+#filters-container {
+    margin-bottom: 2em;
+}
+
+#filters {
+    display: flex;
+}
+
+.filter-title {
+    font-size: var(--xsmall);
+    font-family: var(--font-one);
+    color: var(--color-two);
+    margin-bottom: .25em;
+}
+
+.filter {
+    width: 120px;
+    margin-right: 1em;
+}
+
+.filter-button {
+    width: 100%;
+    background-color: var(--color-eleven);
+    border: none;
+    text-align: left;
+    font-family: var(--font-one);
+    color: var(--color-two);
+    padding: .5em .75em;
+    border-radius: var(--normal-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-dropdown-list {
+    list-style: none;
+    border-radius: var(--normal-radius);
+    background-color: var(--color-eleven);
+}
+
+.filter-dropdown-list-item {
+    font-family: var(--font-one);
+    color: var(--color-two);
+    padding: .5em .75em;
+    border-radius: var(--normal-radius);
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.filter-dropdown-list-item:hover {
+    background-color: var(--color-four);
+    color: var(--color-eleven)
+}
+
+.icon-button {
+    border: none;
+    font-size: var(--msmall);
+    background: none;
+    margin-left: 1.5em;
+    color: var(--color-two);
+    transition: all .5s;
+}
+
+.icon-button:hover {
+    color: var(--color-four);
+}
+button{
+    background-color: var(--color-four);
+
+    color: white;
+    border: none;
+    padding:5px 20px;
+    border-radius: 8px;
+    width: 100px;
+
+}

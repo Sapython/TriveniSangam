@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div class="mb-4 p-3 osahan-cart-item">
+  <div class="osahan-cart-item-profile bg-white rounded shadow p-3 cart-resize">
+    <div class="flex-column">
+      <h6 class="font-weight-bold">Tell us about yourself</h6>
+      <p class="text-muted">
+        Whether you have questions or you would just like to say hello, contact
+        us.
+      </p>
+      <form [formGroup]="contactForm" (ngSubmit)="submitContact(contactForm)" novalidate>
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Your Name</mat-label>
+            <input matInput placeholder="David mark" formControlName="name" [ngClass]="{'has-error': formErrors.name}">
+            <mat-error *ngIf="formErrors.name" [innerHTML]="formErrors.name"></mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Email Address</mat-label>
+            <input matInput formControlName="email" [ngClass]="{'has-error': formErrors.email}" >
+            <mat-error *ngIf="formErrors.email" [innerHTML]="formErrors.email"></mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="number" formControlName="phone" [ngClass]="{'has-error': formErrors.phone}">
+            <mat-error *ngIf="formErrors.phone" [innerHTML]="formErrors.phone"></mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="example-full-width w-100" appearance="outline">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..."  formControlName="comment" [ngClass]="{'has-error': formErrors.comment}"></textarea>
+            <mat-error *ngIf="formErrors.comment" [innerHTML]="formErrors.comment"></mat-error>
+          </mat-form-field>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" >SUBMIT</button>
+      </form>
+
+      <div class="mapouter pt-3">
+        <div class="gmap_canvas">
+          <iframe
+            width="100%"
+            height="100%"
+            id="gmap_canvas"
+            src="https://maps.google.com/maps?q=dugri%20ludhiana&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

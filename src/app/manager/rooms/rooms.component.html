@@ -1,0 +1,109 @@
+<div id="wrapper" (window:resize)="onWindowResize()">
+  <div id="top">
+    <div id="filters-container">
+      <p id="filters-title">Filters</p>
+      <div id="filters">
+        <div class="filter">
+          <p class="filter-title">Type</p>
+          <div class="filter-dropdown">
+            <button type="button" class="filter-button">
+              <span class="selected-option">{{ selectedFilters.type }}</span><i class="fa-solid fa-caret-down"></i>
+            </button>
+            <ul uk-dropdown="mode: click" class="filter-dropdown-list">
+              <li class="filter-dropdown-list-item" (click)="selectedFilters.type = 'All'">
+                All
+              </li>
+              <li *ngFor="let type of roomTypes" class="filter-dropdown-list-item"
+                uk-toggle="target: .filter-dropdown-list" (click)="selectedFilters.type = type.name">
+                {{ type.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="control-buttons">
+    <button type="button" class="primary-btn" id="add-room-btn" uk-toggle="target: #room-modal">
+      <i class="fa-solid fa-plus"></i>Add Room
+    </button>
+    <div id="month-controls">
+      <button class="primary-btn" (click)="lastMonth()">
+        <i class="fa-solid fa-chevron-left"></i>{{ largeScreen ? "Last Month" : '' }}
+      </button>
+      <button class="primary-btn" (click)="nextMonth()">
+        {{ largeScreen ? "Next Month" : '' }}<i class="fa-solid fa-chevron-right" style="margin: 0 0 0 .5em"></i>
+      </button>
+    </div>
+  </div>
+  <div id="table-container">
+    <table>
+      <thead>
+        <tr>
+          <td class="empty-cell">
+            <div class="cell-container"></div>
+          </td>
+          <th *ngFor="let day of days">
+            <div class="cell-container">
+              <div class="cell-content">{{ day.name }}</div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let room of rooms">
+          <tr *ngIf="
+              selectedFilters.type === 'All' ||
+              selectedFilters.type === room.type
+            ">
+            <th>
+              <div class="cell-container">
+                <div class="cell-content">Room {{ room.number }}</div>
+              </div>
+            </th>
+            <td *ngFor="let day of days" name="room" class="room" [id]="day.name+'|'+room.roomId+'|'+room.type"
+              (click)="selectRoom(day.name,room.roomId,room.type)"
+              [ngClass]="{ 'booked-cell': day[room.roomId!], 'selected': isSelected(day.name,room.roomId)}">
+              <div *ngIf="day[room.roomId!]" class="cell-container">
+                <div class="cell-content">{{ day[room.roomId!] }}</div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<span class="selector" #selector></span>
+
+<div id="room-modal" (hidden)="roomForm.reset(); " uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <h2 class="uk-modal-title">Add Room</h2>
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <form [formGroup]="roomForm" (ngSubmit)="submit()">
+      <div id="room-inputs">
+        <div class="room-form-box">
+          <label class="manager-label" for="roomNumber-input">Room Number</label>
+          <input type="text" id="roomNumber-input" class="manager-input" formControlName="number" />
+        </div>
+        <div class="room-form-box">
+          <label class="manager-label">Room Type</label>
+          <select id="room-type-select" class="manager-input" formControlName="type">
+            <option [ngValue]="null" disabled selected>Select Type</option>
+            <option *ngFor="let type of roomTypes" [ngValue]="type.name">
+              {{ type.name }}
+            </option>
+          </select>
+        </div>
+        <div class="room-form-box">
+          <label class="manager-label" for="ratePerDay-input">Rate per day</label>
+          <input type="number" id="ratePerDay-input" class="manager-input" formControlName="ratePerDay" />
+        </div>
+      </div>
+      <button [disabled]="!roomForm.valid" type="submit" id="submit-button" class="primary-btn">
+        Add Room
+      </button>
+    </form>
+  </div>
+</div>

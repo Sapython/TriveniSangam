@@ -1,0 +1,11 @@
+<header class="row d-flex navbar navbar-dark sticky-top bg-dark flex-md-nowrap shadow px-4">
+  <a class="navbar-brand col-md-3 col-xs-8 col-lg-2 w-75 pl-0 pt-0" routerLink="/admin/dashboard">Restaurant Admin</a>
+  <button class="col-xs-4 navbar-toggler d-md-none collapsed mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link" (click)="authService.logout()">Sign out</a>
+    </div>
+  </div>
+</header>

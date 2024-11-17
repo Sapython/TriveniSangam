@@ -1,0 +1,51 @@
+<div class="housekeep-upper-bar">
+  <h1>Housekeeping</h1>
+</div>
+
+<section class="housekeep-main">
+  <div class="filter">
+    <p class="filter-title">Status</p>
+    <div class="filter-dropdown">
+      <button type="button" class="filter-button">
+        <span class="selected-option">{{ selectedFilters.status }}</span
+        ><i class="fa-solid fa-caret-down"></i>
+      </button>
+      <ul uk-dropdown="mode: click" class="filter-dropdown-list">
+        <li
+          class="filter-dropdown-list-item"
+          (click)="selectedFilters.status = 'All'"
+        >
+          All
+        </li>
+        <li
+          class="filter-dropdown-list-item"
+          uk-toggle="target: .filter-dropdown-list"
+          (click)="selectedFilters.status = 'Clean'"
+        >
+          Clean
+        </li>
+        <li
+          class="filter-dropdown-list-item"
+          uk-toggle="target: .filter-dropdown-list"
+          (click)="selectedFilters.status = 'Unclean'"
+        >
+          Unclean
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="housekeep-status">
+    <ng-container *ngFor="let room of rooms">
+      <app-housekeeping-card
+        *ngIf="selectedFilters.status === 'All' || selectedFilters.status === 'Clean' && !needsCleaning(room.lastCleaned) || selectedFilters.status === 'Unclean' && needsCleaning(room.lastCleaned)"
+        [clean_status]="needsCleaning(room.lastCleaned) ? 'unclean' : 'clean'"
+        [housekeep_room_number]="room.number"
+        [timeBeen]="
+          'Last Cleaned ' + timeBeen(room.lastCleaned) + ' day(s) ago'
+        "
+        [room]="room"
+      ></app-housekeeping-card>
+    </ng-container>
+  </div>
+</section>

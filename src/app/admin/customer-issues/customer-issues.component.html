@@ -1,0 +1,43 @@
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row" style="min-height: 100vh;">
+    <app-sidebar id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white shadow sidebar collapse"></app-sidebar>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Customer Issues details</h1>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-3">
+          <div class="card shadow">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Notes</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="contacts.length != 0">
+                <tr *ngFor="let contact of contacts;">
+                  <th scope="row">{{ contact.name }} </th>
+                  <td>{{ contact.phoneNumber }} | {{ contact.email }} </td>
+                  <td>{{ contact.date.seconds * 1000 | date:'MMM d, y' }}</td>
+                  <td>{{ contact.message }}</td>
+                </tr>
+              </tbody>
+              <tbody *ngIf="contacts.length === 0">
+                <tr class="text-center">
+                  <img src="assets/img/svg/no_data.svg" width="200px" class="mt-5" />
+                  <p class="mt-2">No Data available.</p>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

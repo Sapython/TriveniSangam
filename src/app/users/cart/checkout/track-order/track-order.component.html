@@ -1,0 +1,72 @@
+<app-header></app-header>
+<div class="osahan-checkout mb-5" style="min-height: 100vh;">
+  <div class="px-3 pt-3 pb-1">
+    <h2 class="font-weight-bold m-0 pt-1 cart-resize with-title pb-2">Track Order</h2>
+  </div>
+  <div class="osahan-payment cart-resize">
+    <div class="row">
+      <div class="col-lg-8 ">
+        <div class="card bg-white rounded shadow p-3" >
+          <div class="card-body">
+            <h5 class="card-title mb-4">Thank you for ordering.</h5>
+            <div class="order-status bg-white z-depth-1 pt-4 pb-4 mt-3 mb-3 text-center bdrradius col-12 pl-0 pr-0">
+              <div class="order-progress">
+                  <div class="steps-of-order-progress active">
+                      <div class="pt-3 step-container row align-items-top ml-1 mr-1 border-bottom">
+                          <div class="col-4 col-md-2 p-0 mb-2" style="border-right: 3px solid #000 !important;">
+                              <img src="assets/img/icons/pin.png" class="order-status-icon " width="30px" />
+                              <div class="badge status-badge mt-2 pl-3 pr-3 pb-1 pt-1" id="orderstatustag">
+                                  Preparing
+                              </div>
+                          </div>
+                          <div class="col-8 col-md-10 text-left ">
+                              <h6 class="status-msg mb-4" id="orderstatusmessage">
+                                Order received
+                              </h6>
+                              <p class="small mb-1 mb-4" id="orderstatusdescription">
+                                 Out for delivery
+                              </p>
+                              <p class="small mb-1 mb-4" id="orderstatusdescription">
+                                Delivered
+                             </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            <a class="btn btn-success" routerLink="/"
+            >Return to Home</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card bg-white rounded shadow p-3" >
+          <div class="card-body px-0">
+            <h5 class="card-title">Order Summary</h5>
+            <hr>
+            <h6 class="card-subtitle mb-2 text-muted">Items (03)</h6>
+            <div class="row">
+              <div class="col-8">Harabhara Kabab (6 pcs)</div>
+              <div class="col-4 text-right">₹. 200 /-</div>
+              <div class="col-8">Paneer Do Pyaaz</div>
+              <div class="col-4 text-right">₹. 260 /-</div>
+              <div class="col-8">Medu vada</div>
+              <div class="col-4 text-right">₹. 120 /-</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-8">Sub Total</div>
+              <div class="col-4 text-right">₹. 580 /-</div>
+              <div class="col-8">Internet Handle charge</div>
+              <div class="col-4 text-right">₹. 100 /-</div>
+              <div class="col-8">Delivery charges</div>
+              <div class="col-4 text-right">₹. 100 /-</div>
+            </div>
+            <h6 class="card-subtitle mb-2 mt-3">Grand Total : ₹. 1756 /-</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

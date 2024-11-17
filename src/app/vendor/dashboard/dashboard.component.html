@@ -1,0 +1,55 @@
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row" style="min-height: 100vh;">
+    <app-sidebar id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white shadow sidebar collapse"></app-sidebar>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3 ">
+          <div class="card shadow bg-primary-blue text-white">
+            <div class="card-body">
+              <h5 class="card-title">Orders</h5>
+              <h6 class="card-subtitle mb-2">See all orders</h6>
+              <p class="card-text"></p>
+              <a routerLink="/vendor/orders" class="card-link">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3 ">
+          <div class="card shadow bg-primary-blue text-white">
+            <div class="card-body">
+              <h5 class="card-title">Products</h5>
+              <h6 class="card-subtitle mb-2 ">See all the products</h6>
+              <p class="card-text"></p>
+              <a routerLink="/vendor/products" class="card-link">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3 ">
+          <div class="card shadow bg-primary-blue text-white">
+            <div class="card-body">
+              <h5 class="card-title">Feedbacks</h5>
+              <h6 class="card-subtitle mb-2 ">View all feedbacks list.</h6>
+              <p class="card-text"></p>
+              <a routerLink="/vendor/feedbacks" class="card-link">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3 ">
+          <div class="card shadow bg-primary-blue text-white">
+            <div class="card-body">
+              <h5 class="card-title">Profile</h5>
+              <h6 class="card-subtitle mb-2 ">View all vendors list & make changes to them.</h6>
+              <p class="card-text"></p>
+              <a routerLink="/vendor/profile" class="card-link">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

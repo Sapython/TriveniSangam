@@ -1,0 +1,80 @@
+<div id="wrapper" (window:resize)="onWindowResize()">
+  <div id="sidebar-container">
+    <div [style]="largeScreen || showSidebar ? '' : 'display: none'" id="sidebar-container">
+      <aside id="sidebar">
+        <div id="headings">
+          <h2 id="hotel-name">Triveni Sangam</h2>
+          <h3 id="manager-name">{{dataProvider.userData?.displayName}}</h3>
+          <p id="manager-email">{{dataProvider.userData?.email}}</p>
+        </div>
+        <ul id="sidebar-ul">
+          <li class="sidebar-li">
+            <a routerLink="dashboard" routerLinkActive="active" (click)="toggleSidebar()" class="sidebar-li-a"><i
+                class="fa-solid fa-house sidebar-icon"></i><span class="sidebar-text">Dashboard</span></a>
+          </li>
+          <li class="sidebar-li">
+            <a routerLink="bookings" routerLinkActive="active" (click)="toggleSidebar()" class="sidebar-li-a"><i
+                class="fa-solid fa-calendar-check sidebar-icon"></i><span class="sidebar-text">Bookings</span></a>
+          </li>
+          <li class="sidebar-li">
+            <a routerLink="guests" routerLinkActive="active" (click)="toggleSidebar()" class="sidebar-li-a"><i
+                class="fa-solid fa-user-group sidebar-icon"></i><span class="sidebar-text">Guests</span></a>
+          </li>
+          <li class="sidebar-li">
+            <a routerLink="rooms" routerLinkActive="active" (click)="toggleSidebar()" class="sidebar-li-a"><i
+                class="fa-solid fa-door-open sidebar-icon"></i><span class="sidebar-text">Rooms</span></a>
+          </li>
+          <li class="sidebar-li">
+            <a routerLink="housekeeping" routerLinkActive="active" (click)="toggleSidebar()" class="sidebar-li-a"><i
+                class="fa-solid fa-broom sidebar-icon"></i><span class="sidebar-text">Housekeeping</span></a>
+          </li>
+          <li class="sidebar-li">
+            <a routerLink="orders" routerLinkActive="active" (click)="toggleSidebar()" class="sidebar-li-a"><i
+                class="fa-solid fa-clipboard-list sidebar-icon"></i><span class="sidebar-text">Orders</span></a>
+          </li>
+          <li>
+            <a routerLink="stock" routerLinkActive="active" class="sidebar-li-a" (click)="toggleSidebar()"><i
+                class="fa-solid fa-boxes-stacked"></i><span class="sidebar-text">Stock</span></a>
+          </li>
+          <li>
+            <a routerLink="utilities" routerLinkActive="active" class="sidebar-li-a" (click)="toggleSidebar()"><i
+                class="fa-solid fa-fire-flame-simple" style="margin-right: 1em;"></i><span
+                class="sidebar-text">Utilities</span></a>
+          </li>
+          <li>
+            <a routerLink="employees" routerLinkActive="active" class="sidebar-li-a" (click)="toggleSidebar()"><i
+                class="fa-solid fa-user"></i><span class="sidebar-text">Employees</span></a>
+          </li>
+          <li>
+            <a routerLink="recipes" routerLinkActive="active" class="sidebar-li-a" (click)="toggleSidebar()"><i
+                class="fa-solid fa-bowl-food"></i><span class="sidebar-text">Recipes</span></a>
+          </li>
+          <!-- <li class="sidebar-li">
+          <a
+            routerLink="RoomManager/sales"
+            routerLinkActive="active"
+            class="sidebar-li-a"
+            ><i class="fa-solid fa-chart-column sidebar-icon"></i
+            ><span class="sidebar-text">Sales</span></a
+          >
+        </li>
+        <li class="sidebar-li">
+          <a
+            routerLink="RoomManager/settings"
+            routerLinkActive="active"
+            class="sidebar-li-a"
+            ><i class="fa-solid fa-gear sidebar-icon"></i
+            ><span class="sidebar-text">Settings</span></a
+          >
+        </li> -->
+        </ul>
+      </aside>
+    </div>
+  </div>
+  <main>
+    <button *ngIf="!largeScreen" class="uk-navbar-toggle" uk-navbar-toggle-icon id="toggle-button"
+      (click)="toggleSidebar()"></button>
+    <router-outlet></router-outlet>
+    <div id="overlay" (click)="showSidebar && toggleSidebar()"></div>
+  </main>
+</div>

@@ -1,0 +1,148 @@
+<header>
+  <h2>Orders</h2>
+  <button type="button" class="primary-btn" (click)="openOrderModal()">
+    <i class="fa-solid fa-plus"></i>New Order
+  </button>
+</header>
+<section>
+  <mat-tab-group #tabGroup (selectedTabChange)="onTabChange()">
+    <mat-tab label="Pending">
+      <div *ngIf="pendingOrders && pendingOrders.length > 0; else noPendingOrders" class="order-table-container">
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th>Dish</th>
+              <th>Room No.</th>
+              <th>Order</th>
+              <th>Phone</th>
+              <th>Time</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of pendingOrders">
+              <td><ul><li *ngFor="let item of order.dishes">{{ dishNames[item.id] }} x {{item.quantity}}</li></ul></td>
+              <td>{{ roomNos[order.roomId] }}</td>
+              <td>{{ guests[order.orderId!]?.name }}</td>
+              <td>{{ guests[order.orderId!]?.phoneNumber }}</td>
+              <td>{{ getPendingOrderTime(order.time) }}</td>
+              <td>
+                <div class="order-buttons">
+                  <button class="order-button mark-complete" uk-tooltip="Mark Complete"
+                    (click)="markComplete(order.orderId!)">
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                  <button class="order-button cancel-order" uk-tooltip="Cancel Order"
+                    (click)="cancelOrder(order.orderId!)">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noPendingOrders>
+        <p class="no-orders">No pending orders.</p>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Completed">
+      <div *ngIf="
+          completedOrders && completedOrders.length > 0;
+          else noCompletedOrders
+        " class="order-table-container">
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th>Dish</th>
+              <th>Room No.</th>
+              <th>Order</th>
+              <th>Phone</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of completedOrders">
+              <td><ul><li *ngFor="let item of order.dishes">{{ dishNames[item.id] }}x {{item.quantity}}</li></ul></td>
+              <td>{{ roomNos[order.roomId] }}</td>
+              <td>{{ guests[order.orderId!]?.name }}</td>
+              <td>{{ guests[order.orderId!]?.phoneNumber }}</td>
+              <td>{{ getOrderTime(order.time) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noCompletedOrders>
+        <p class="no-orders">No completed orders.</p>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Cancelled">
+      <div *ngIf="
+          cancelledOrders && cancelledOrders.length > 0;
+          else noCancelledOrders
+        " class="order-table-container">
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th>Dish</th>
+              <th>Room No.</th>
+              <th>Order</th>
+              <th>Phone</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of cancelledOrders">
+              <td><ul><li *ngFor="let item of order.dishes">{{ dishNames[item.id] }}x {{item.quantity}}</li></ul></td>
+              <td>{{ roomNos[order.roomId] }}</td>
+              <td>{{ guests[order.orderId!]?.name }}</td>
+              <td>{{ guests[order.orderId!]?.phoneNumber }}</td>
+              <td>{{ getOrderTime(order.time) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noCancelledOrders>
+        <p class="no-orders">No cancelled orders.</p>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</section>
+<div id="order-modal" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <h2 class="uk-modal-title">New Order</h2>
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <form [formGroup]="orderForm" (ngSubmit)="addOrder()">
+      <div id="order-inputs">
+        <button type="button" (click)="addDish()" class="primary-btn">Add A Dish</button>
+        <ng-container *ngFor="let dishControl of dishControls;let i = index;">
+          <div class="order-form-box">
+            <label class="manager-label">Dish</label>
+            <div class="row">
+              <select class="manager-input" [formControl]="dishControl.id">
+                <option [ngValue]="null" disabled>Select Dish</option>
+                <option *ngFor="let dish of dishes" [ngValue]="dish.dishId">
+                  {{ dish.name }}
+                </option>
+              </select>
+              <input class="manager-input" type="number" [formControl]="dishControl.quantity">
+              <button type="button" (click)="removeDish(i)" class="primary-btn"><i class="ri-delete-bin-fill"></i></button>
+            </div>
+          </div>
+        </ng-container>
+        <div class="order-form-box">
+          <label class="manager-label">Room Number</label>
+          <select class="manager-input" formControlName="roomId">
+            <option [ngValue]="null" disabled>Select Room</option>
+            <option *ngFor="let room of bookedRooms" [ngValue]="room.roomId">
+              {{ room.number }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <button [disabled]="!orderForm.valid" type="submit" id="submit-button" class="primary-btn">
+        Add Order
+      </button>
+    </form>
+  </div>
+</div>

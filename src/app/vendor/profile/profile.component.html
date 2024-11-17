@@ -1,0 +1,49 @@
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row" style="min-height: 100vh;">
+    <app-sidebar id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white shadow sidebar collapse"></app-sidebar>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Update your profile</h1>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-3">
+          <div class="card shadow bg-primary-blue text-white border p-4">
+            <form class="row g-3" [formGroup]="profileForm" (ngSubmit)="updateProfile(profileForm)" novalidate>
+              <div class="col-md-6 mt-3">
+                <label for="name" class="form-label">Vendor Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+                <span *ngIf="formErrors.name" [innerHTML]="formErrors.name" class="text-danger"></span>
+              </div>
+              <div class="col-md-6 mt-3" >
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" formControlName="email">
+                <span *ngIf="formErrors.email" [innerHTML]="formErrors.email" class="text-danger"></span>
+              </div>
+              <div class="col-12 mt-3">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="address">
+                <span *ngIf="formErrors.address" [innerHTML]="formErrors.address" class="text-danger"></span>
+              </div>
+              <div class="col-md-6 mt-3">
+                <label for="inputCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="inputCity" formControlName="city">
+                <span *ngIf="formErrors.city" [innerHTML]="formErrors.city" class="text-danger"></span>
+              </div>
+              <div class="col-md-6 mt-3">
+                <label for="contact" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="contact" formControlName="phone">
+                <span *ngIf="formErrors.phone" [innerHTML]="formErrors.phone" class="text-danger"></span>
+              </div>
+              <div class="col-12 mt-4">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

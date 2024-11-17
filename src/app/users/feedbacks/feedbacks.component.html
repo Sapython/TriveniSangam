@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div >
+  <div class="osahan-faq cart-resize with-title">
+    <div class="px-3 pt-3 pb-5 d-flex justify-content-between">
+      <h2 class="font-weight-bold m-0 pt-1 ">
+        Feedbacks
+      </h2>
+      <button class="btn btn-primary" routerLink="/feedbacks/add">Give Feedback</button>
+    </div>
+  </div>
+  <div class="p-3 osahan-cart-item cart-resize ">
+    <div class="row mb-5">
+      <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 mb-3" *ngFor="let feedback of feedbackData;">
+        <div class="card shadow">
+          <div class="card-body">
+            <h5 class="card-title">{{ feedback.name }} </h5>
+            <div class="small">{{ feedback.date }}</div>
+            <hr>
+            <div class="mt-2">{{ feedback.message }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 mx-auto text-center" *ngIf="feedbackData.length === 0">
+        <img src="assets/img/svg/no_data.svg" class="img-fluid" width="250px" />
+        <h4 class="mt-3">No Feedbacks Available.</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

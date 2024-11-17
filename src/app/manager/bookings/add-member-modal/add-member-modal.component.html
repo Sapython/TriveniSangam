@@ -1,0 +1,89 @@
+<mat-dialog-content>
+  <form [formGroup]="memberForm" (ngSubmit)="submit(memberForm.value)">
+    <div class="booking-form-box">
+      <label class="manager-label">Name</label>
+      <input
+        class="manager-input"
+        formControlName="name"
+        type="text"
+        #nameInput
+        (input)="searchGuests($event)"
+      />
+      <ul id="guest-dropdown" *ngIf="nameInput.value.trim()">
+        <li *ngFor="let guest of filteredGuests.slice(0, 5)">
+          <button (click)="selectGuest(guest)">
+            {{ guest.name }}
+            <br />
+            {{ guest.phoneNumber }}
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label">Date of Birth</label>
+      <input class="manager-input" type="date" formControlName="dob" />
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label"
+        >Phone Number{{ data.primary ? "" : " (Optional)" }}</label
+      >
+      <input type="tel" class="manager-input" formControlName="phoneNumber" />
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label"
+        >Email{{ data.primary ? "" : " (Optional)" }}</label
+      >
+      <input class="manager-input" formControlName="email" type="email" />
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label"
+        >Address{{ data.primary ? "" : " (Optional)" }}</label
+      >
+      <input class="manager-input" type="text" formControlName="address" />
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label"
+        >Aadhaar Number{{ data.primary ? "" : " (Optional)" }}</label
+      >
+      <input
+        class="manager-input"
+        type="number"
+        formControlName="aadhaarNumber"
+      />
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label"
+        >Aadhaar Image{{ data.primary ? "" : " (Optional)" }}</label
+      >
+      <input
+        class="manager-input"
+        type="file"
+        (change)="aadhaarImage = $event"
+        formControlName="aadhaarImage"
+      />
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label"
+        >PAN Number{{ data.primary ? "" : " (Optional)" }}</label
+      >
+      <input class="manager-input" type="text" formControlName="panNumber" />
+    </div>
+    <div class="booking-form-box">
+      <label class="manager-label"
+        >PAN Image{{ data.primary ? "" : " (Optional)" }}</label
+      >
+      <input
+        class="manager-input"
+        type="file"
+        (change)="panImage = $event"
+        formControlName="panImage"
+      />
+    </div>
+    <button type="submit" class="primary-btn" [disabled]="!memberForm.valid">
+      Submit
+    </button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

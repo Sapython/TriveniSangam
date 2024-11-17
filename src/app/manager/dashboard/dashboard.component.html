@@ -1,0 +1,93 @@
+<!-- <app-header section="Dashbord"></app-header> -->
+<div id="header">
+  <b id="section_name">Dashboard</b>
+</div>
+
+<section id="dashboard">
+  <div id="dashbord_info">
+    <div class="stat total_income">
+      <i class="ri-money-dollar-box-fill"></i>
+      <div class="info">
+        <b>₹{{ this.totalIncome }} </b> <span>Total income</span>
+      </div>
+    </div>
+    <div class="stat guest">
+      <i class="ri-account-circle-fill"></i>
+      <div class="info">
+        <b>{{ this.totalGuest }} </b> <span>Guests</span>
+      </div>
+    </div>
+    <div class="stat newGuest">
+      <i class="ri-archive-fill"></i>
+      <div class="info">
+        <b>{{ this.booking }} </b> <span>Total Bookings</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rooms">
+    <div class="rooms_info">
+      <b>Rooms</b>
+    </div>
+    <div class="room_slider" uk-slider>
+      <ul class="uk-slider-items uk-child-width-1-3@s uk-child-width-1-4@">
+        <li *ngFor="let room of rooms">
+          <img
+            [src]="
+              room.images.length > 0
+                ? room.images[0]
+                : 'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+            "
+            width=""
+            height=""
+            alt=""
+          />
+
+          <div
+            class="status"
+            [ngClass]="{
+              Available: true
+            }"
+          >
+            <b>{{ true ? "Available" : "Booked" }}</b>
+          </div>
+          <div class="room_details">
+            <span class="roomnum">Room no.{{ room.number }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="others">
+    <div class="room_availability">
+      <b>Rooms Availability </b>
+      <div style="width: 100%">
+        <canvas id="myChart"></canvas>
+      </div>
+      <div class="indictor">
+        <div class="dot A"></div>
+        Available
+        <div class="dot B"></div>
+        Booked
+      </div>
+      <div class="available_status">
+        <!-- <span
+          ><b>{{ this.availableRooms }}</b> Rooms</span
+        > -->
+        <!-- <span
+          ><b>{{ this.rooms.length - this.availableRooms }}</b> Rooms</span
+        > -->
+      </div>
+    </div>
+
+    <div class="guestList">
+      <p>Guest list</p>
+      <ul>
+        <li *ngFor="let guest of guests">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          <span>{{ guest.name }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

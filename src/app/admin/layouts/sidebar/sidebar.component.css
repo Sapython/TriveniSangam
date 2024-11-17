@@ -1,0 +1,11 @@
+li.nav-item .active {
+  border-radius: 5px;
+  color: #fff;
+  background: #343a40;
+}
+.nav-link {
+  color: #343a40;
+}
+.nav-link:hover {
+  color: #343a4069;
+}

@@ -1,0 +1,78 @@
+.guest-upper-bar {
+  display: flex;
+  background-color: var(--color-one);
+}
+
+h1 {
+  font-size: var(--msmall);
+  font-weight: bold;
+  font-family: var(--font-one);
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.fa-magnifying-glass {
+  font-size: var(--msmall);
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 75%;
+}
+
+.fa-bell {
+  font-size: var(--msmall);
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+.guest-main {
+  height: 60%;
+  background-color: var(--color-one);
+}
+.guest-main #card {
+  width: 80%;
+  height: 65%;
+  position: relative;
+  margin: 100px auto;
+  background-color: #dadee5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.guest_details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+table,
+th,
+td {
+  border: 0.5px solid;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  padding: 5px;
+  background-color: var(--color-eleven);
+  height: 130px;
+  border: none;
+  border-radius: 10px;
+}
+th {
+  padding: 10px;
+}
+
+button {
+  border: none;
+  padding: 5px 10px;
+  background-color: var(--color-four);
+  color: var(--color-eleven);
+  border-radius: 5px;
+  margin: 10px;
+  width: 100px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}

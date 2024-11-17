@@ -1,0 +1,36 @@
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row" style="min-height: 100vh;">
+    <app-sidebar id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white shadow sidebar collapse"></app-sidebar>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Orders details</h1>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-3">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title">#Order ID : 12457861</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Mr. Sahil Seta</h6>
+              <div class="text-muted">+91 7600122030</div>
+              <div class="text-muted">Address : 53, MG Road, Junagadh.</div>
+              <div class="text-muted">STATUS : <span class="badge badge-primary">DELIVERED</span></div>
+              <hr>
+                <p class="order-box"><strong>Items</strong></p>
+                <div class="d-flex mb-2"><span class="w-75">Panner Chilly Dosa</span> <span class="text-muted text-right w-25">Rs. 125</span></div>
+                <div class="d-flex mb-2"><span class="w-75">Panner Chilly Dosa</span> <span class="text-muted text-right w-25">Rs. 125</span></div>
+                <div class="d-flex mb-2"><span class="w-75">Panner Chilly Dosa</span> <span class="text-muted text-right w-25">Rs. 125</span></div>
+                <hr>
+                <div class="d-flex mb-2"><span class="w-75"><strong>TOTAL</strong></span> <span class=" text-right w-25"><strong>Rs. 450</strong></span></div>
+              <hr>
+              <a href="#" class="card-link">Prepared</a>
+              <a routerLink="/admin/orders" class="card-link">Back to orders</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

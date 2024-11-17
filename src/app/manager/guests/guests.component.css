@@ -1,0 +1,134 @@
+.guest-main {
+    border-radius: 20px;
+    background-color: #dadee5;
+    width: 100%;
+    height: 100%;
+}
+
+.guest-upper-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5em;
+}
+
+h1 {
+    font-size: var(--msmall);
+    font-weight: bold;
+    font-family: var(--font-one);
+    margin: 0;
+}
+
+.search-box {
+    margin-right: 1em;
+}
+
+.guest-status {
+    overflow-y: auto;
+}
+
+.guest-status-table {
+    background-color: var(--color-nine);
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: var(--xsmall);
+    min-width: 400px;
+    font-family: var(--font-one);
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    min-width: 750px;
+}
+
+.guest-status-table thead tr {
+    background-color: var(--color-four);
+    color: var(--color-one);
+    text-align: left;
+    font-weight: lighter;
+    border-bottom: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+.guest-status-table th,
+.guest-status-table td {
+    padding: 12px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: left;
+    padding: 20px;
+}
+
+.guest-status-table tbody tr:nth-child(even) {
+    background-color: var(--color-fifteen);
+}
+
+.guest-status-table tbody tr:last-of-type {
+    border-bottom: 2px solid black;
+
+}
+
+.guest-status-table tbody tr {
+    transition: 0.3s;
+}
+
+.guest-status-table tbody tr:hover {
+    transition: 0.3s;
+    background-color: var(--color-sixteen);
+    transform: scale(1.005);
+}
+
+
+#buttons_container {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px
+}
+
+#buttons_container div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 70px;
+    width: 600px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.guest-form-box {
+    margin: 1em 0;
+}
+
+label {
+    margin: 0;
+    font-size: var(--xsmall)
+}
+
+.guest-form-box input,
+.guest-form-box select {
+    width: 100%;
+    font-size: var(--xsmall)
+}
+
+#submit-button {
+    margin-top: 1em;
+    width: 100%;
+}
+
+@media (max-width: 550px) {
+    .guest-upper-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    h1 {
+        margin-bottom: 1em;
+    }
+}

@@ -1,0 +1,41 @@
+.booking-form-box {
+    margin-bottom: 1em;
+}
+
+label {
+    margin: 0;
+    font-size: var(--xsmall)
+}
+
+.booking-form-box input {
+    width: 100%;
+    font-size: var(--xsmall)
+}
+
+#guest-dropdown {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#guest-dropdown button {
+    background-color: var(--color-fifteen);
+    color: var(--color-two);
+    border: none;
+    border: 1.5px solid var(--color-four);
+    border-top: none;
+    outline: none;
+    padding: .5em;
+    width: 100%;
+    font-family: var(--font-one);
+    text-align: left;
+    transition: all .4s;
+}
+
+#guest-dropdown button:hover {
+    background-color: var(--color-sixteen);
+}
+
+button[type="submit"] {
+    width: 100%;
+}

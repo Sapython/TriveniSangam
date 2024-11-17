@@ -1,0 +1,24 @@
+.list-card-image .item-img {
+  width: 100% !important;
+  height:310px !important;
+  object-fit: cover;
+  height: 100%;
+}
+.uk-inline-clip{
+  display: block !important;
+}
+@media screen and (max-width : 768px) {
+  .list-card-image .item-img {
+    height: 225px !important;
+    width: 100% !important;
+  }
+
+}
+
+.text-desc {
+	color: inherit;
+	overflow: hidden;
+	white-space: nowrap;
+	font-size: 15px;
+	text-overflow: ellipsis
+}

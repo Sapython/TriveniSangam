@@ -1,0 +1,132 @@
+<div class="bg-white shadow border-bottom">
+  <div class="title d-flex align-items-center py-3">
+    <div class="col-2 col-md-4">
+      <a id="sidebarCollapse">
+        <img src="assets/img/svg/align-left.svg" class="svg-icon" />
+      </a>
+    </div>
+    <div class="logo-main col-7 col-md-4 px-0 d-flex align-items-center justify-content-center">
+      <a routerLink="/"><img class="logo main-logo" src="assets/img/dosa-plaza.png" /></a>
+      <a routerLink="/"><img class="logo main-logo" src="assets/img/logo-hts.jpeg" /></a>
+    </div>
+    <div class="font-weight-bold menubar-head pr-0 col-3 col-md-4">
+      <ul class="landscape">
+        <li >
+          <a routerLink="/">
+            <i class="feather-home mr-2"></i> Home
+          </a>
+        </li>
+        <li >
+          <a routerLink="/account/my-orders">
+            <i class="ri-archive-fill"></i> My Orders
+          </a>
+        </li>
+        <li >
+          <a routerLink="/rooms">
+            <i class="feather-map-pin mr-2"></i> Book Rooms
+          </a>
+        </li>
+        <li >
+          <a routerLink="/cart" href="javascript:void(0)" class="cart-menu"> <i class="feather-shopping-cart mr-2"></i> <span  class="cart-count"
+            *ngIf="loggedIn && cartProducts?.length > 0">{{cartProducts?.length}}</span> Cart</a>
+        </li>
+        <li *ngIf="!dataProvider.loggedIn">
+          <a routerLink="/sign-up"> <i class="feather-book-open mr-2"></i> Login</a>
+        </li>
+        <li *ngIf="dataProvider.loggedIn">
+          <a routerLink="/account"><i class="feather-user mr-2"></i> Profile</a>
+        </li>
+      </ul>
+      <div class="uk-inline res-option-btn">
+        <button class="uk-button-default" type="button">Options</button>
+        <div uk-dropdown="mode: click">
+          <ul class="">
+            <li >
+              <a routerLink="/">
+                <i class="feather-home mr-2"></i> Home
+              </a>
+            </li>
+            <li >
+              <a routerLink="/account/my-orders">
+                <i class="ri-archive-fill"></i> My Orders
+              </a>
+            </li>
+            <li >
+              <a routerLink="/rooms">
+                <i class="feather-map-pin mr-2"></i> Book Rooms
+              </a>
+            </li>
+            <li >
+              <a routerLink="/cart" href="javascript:void(0)" class="cart-menu"> <i class="feather-shopping-cart mr-1"></i> <span class="cart-count"
+                *ngIf="loggedIn && cartProducts?.length > 0">{{cartProducts?.length}}</span> Cart</a>
+            </li>
+            <li *ngIf="!dataProvider.loggedIn">
+              <a routerLink="/sign-up"> <i class="feather-book-open mr-1"></i> Login</a>
+            </li>
+            <li *ngIf="dataProvider.loggedIn">
+              <a routerLink="/account"><i class="feather-user mr-1"></i> Profile</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<nav id="sidebar">
+  <div id="dismiss">
+    <img src="assets/img/svg/cross.svg" class="svg-icon bg-white" />
+  </div>
+  <div class="sidebar-header">
+      <h3 class="text-white">Triveni Sangam Hotel</h3>
+  </div>
+  <hr class="bg-white">
+  <ul class="">
+    <li >
+      <a routerLink="/">
+        <i class="feather-home mr-2"></i> Home
+      </a>
+    </li>
+    <li >
+      <a routerLink="/account/my-orders">
+        <i class="ri-archive-fill"></i> My Orders
+      </a>
+    </li>
+    <li >
+      <a routerLink="/rooms">
+        <i class="feather-map-pin mr-2"></i> Book Rooms
+      </a>
+    </li>
+    <li >
+      <a routerLink="/sign-up" href="javascript:void(0)"> <i class="feather-edit mr-2"></i> Login / Register</a>
+    </li>
+    <li>
+      <a routerLink="/feedbacks"> <i class="feather-book-open mr-2"></i> Feedback</a>
+    </li>
+    <!-- <li>
+      <a routerLink="/about-us"><i class="feather-info mr-2"></i> About Us</a>
+    </li> -->
+    <li>
+      <a routerLink="/contact-us" href="javascript:void(0)">
+        <i class="feather-phone mr-2"></i> Contact Us</a>
+    </li>
+    <li >
+      <a routerLink="/privacy-policy" >
+        <i class="feather-align-left mr-2"></i> Privacy Policy</a>
+    </li>
+    <li >
+      <a routerLink="/return-policy" href="javascript:void(0)">
+        <i class="feather-align-left mr-2"></i> Return Policy</a>
+    </li>
+    <li>
+      <a routerLink="/terms-conditions">
+        <i class="feather-align-left mr-2"></i> Terms & Conditions</a>
+    </li>
+    <li *ngIf="dataProvider.loggedIn && dataProvider?.userData?.access === 'Admin'">
+      <a routerLink="/ProductManager/dashboard" href="javascript:void(0)">
+        <i class="feather-list mr-2"></i> Admin Panel
+      </a>
+    </li>
+  </ul>
+
+</nav>

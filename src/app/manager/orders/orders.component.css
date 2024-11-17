@@ -1,0 +1,133 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
+header h2 {
+  font-family: var(--font-one);
+  color: var(--color-two);
+  font-size: var(--small);
+  margin: 0;
+}
+
+section {
+  padding: 0;
+}
+
+::ng-deep .mat-tab-label {
+  width: 100%;
+  font-family: var(--font-one);
+  color: var(--color-two);
+  font-size: var(--xsmall);
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: var(--color-four);
+}
+
+.no-orders {
+  font-family: var(--font-one);
+  color: var(--color-two);
+  font-size: var(--xsmall);
+  padding: 1.5em;
+}
+
+.order-table-container {
+  padding: 1.5em;
+}
+
+.order-table {
+  width: 100%;
+  min-width: 1100px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 .5em;
+  font-size: var(--xsmall);
+  font-family: var(--font-one);
+  color: var(--color-two);
+}
+
+.order-table th,
+.order-table td {
+  padding: .5em;
+}
+
+.order-table td:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.order-table td:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+.order-table th {
+  white-space: nowrap;
+}
+
+.order-table tbody tr {
+  background-color: var(--color-eleven);
+  border-radius: 50px;
+  transition: all .5s;
+}
+
+.order-table tbody tr:hover {
+  background-color: var(--color-fifteen);
+}
+
+.order-button {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  color: var(--color-eleven);
+  border: none;
+  outline: none;
+  transition: all .5s;
+}
+
+.order-button:hover,
+.order-button:focus {
+  transform: scale(1.05);
+}
+
+.order-button.mark-complete {
+  background-color: var(--color-seven);
+  margin-right: .5em;
+}
+
+.order-button.cancel-order {
+  background-color: var(--color-twelve);
+}
+
+.order-form-box {
+  margin: 1em 0;
+}
+
+label {
+  margin: 0;
+  font-size: var(--xsmall)
+}
+
+.order-form-box input,
+.order-form-box select {
+  width: 100%;
+  font-size: var(--xsmall)
+}
+
+#submit-button {
+  margin-top: 1em;
+  width: 100%;
+}
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.row > select{
+  width:60%;
+}
+.row > input{
+  width:30%;
+}

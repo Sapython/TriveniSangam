@@ -1,0 +1,115 @@
+.guest-main{
+    border-radius: 20px;
+    background-color: #dadee5;
+    width: 100%;
+    height: 100%;
+}
+
+.guest-upper-bar{
+    display: flex;
+    margin-bottom: 25px;
+}
+
+h1{
+    font-size: var(--msmall);
+    font-weight: bold;
+    font-family: var(--font-one);
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.fa-magnifying-glass{
+    font-size: var(--msmall);
+    font-weight: bold;
+    margin-top: 30px;
+    margin-left: 75%; 
+}
+
+.fa-bell{
+    font-size: var(--msmall);
+    font-weight: bold;
+    margin-top: 30px;
+    margin-left: 30px; 
+}
+
+
+.guest-buttons{
+    display: flex;
+    margin-bottom: 10px;
+    float: right;    
+}
+
+#filter-guest{
+    background-color: #ffffff;
+    border-color: var(--color-nine);
+    border-radius: 8px;
+    padding: 3px;
+    width: 80px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    border-style: solid;
+    box-shadow:rgba(0, 0, 0, 0.35) 0px 2px 8px;
+}
+
+#edit-guest{
+    background-color: #ffffff;
+    border-color: var(--color-nine);
+    padding: 3px;
+    width: 120px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    border-style: solid;
+    box-shadow:rgba(0, 0, 0, 0.35) 0px 2px 8px;
+}
+
+.view-guest{
+    background-color: #ffffff;
+    border-color: var(--color-nine);
+    padding: 3px;
+    width: 120px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-style: solid;
+    box-shadow:rgba(0, 0, 0, 0.35) 0px 2px 8px;
+}
+#guest_details{
+    width: 99%;
+    height:70%;
+    background-color:var(--color-eleven );
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    position: relative;
+}
+.guest_column{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+.box{
+ background-color: var(--color-box);
+    display: flex;
+padding: 5px 10px;
+    align-items: center;
+    font-size: 13px ;
+    border-radius: 5px;
+
+}
+.buttons{
+position:absolute;
+bottom: 200px;
+right: 50px;
+
+}
+.buttons button{
+  border: none;
+  padding: 5px 10px;
+  background-color: var(--color-four);
+  color: var(--color-eleven);
+  border-radius: 5px;
+    margin: 10px;
+    }

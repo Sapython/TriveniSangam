@@ -1,0 +1,334 @@
+<app-header></app-header>
+<div class="osahan-checkout mb-5" style="min-height: 100vh;">
+  <div class="px-3 pt-3 pb-1">
+    <h2 class="font-weight-bold m-0 pt-1 cart-resize with-title">Checkout</h2>
+  </div>
+  <div class="osahan-payment cart-resize px-3 mb-5 h-100" *ngIf="checkoutType === 'product'">
+    <div class="py-3 osahan-cart-item">
+      <div class="osahan-cart-item-profile bg-white rounded shadow p-3">
+        <div class="d-flex flex-column">
+          <h6 class="mb-2 font-weight-bold">DELIVERY TYPE</h6>
+          <div class="mb-4 mt-2 col-md-12 form-group pl-0 pr-0">
+            <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+              <label class="btn btn-outline-secondary active">
+                <input type="radio" name="formType" id="option1" (click)="updateCheckout(true)" [value]="1" checked />
+                Online checkout
+              </label>
+              <label class="btn btn-outline-secondary">
+                <input type="radio" name="formType" id="option2" [value]="2" (click)="updateCheckout(false)" /> Offline
+                Checkout
+              </label>
+            </div>
+          </div>
+          <ng-container *ngIf="formType">
+            <h6 class="mb-2 font-weight-bold">DELIVERY ADDRESS</h6>
+            <div *ngFor="let data of delivery_addresses; index as i;" class="custom-control custom-radio mb-2 px-0">
+              <input type="radio" class="custom-control-input" name="address" [value]="data.id"
+                (click)="checkAddress(data.id)" id="address{{i}}" [(ngModel)]="dataProvider.selectedDeliveryAddress" />
+              <label class="custom-control-label border osahan-check p-3 w-100 rounded border-primary"
+                for="address{{i}}">
+                <i *ngIf="data.nickname === 'home'" class="feather-home mr-2"></i>
+                <i *ngIf="data.nickname === 'office'" class="feather-briefcase mr-2"></i>
+                {{ data.nickname }} <br />
+                <p class="small mb-0 pl-4">
+                  {{ data.area }} , {{ data.address }}
+                </p>
+                <p class="small mb-0 pl-4 text-danger d-inline" (click)="deleteDeliveryAddress(data.id)">Remove</p>
+              </label>
+            </div>
+            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#exampleModal">
+              ADD NEW ADDRESS
+            </a>
+          </ng-container>
+          <div *ngIf="formType === false" class="pb-5">
+            <form [formGroup]="offlineCheckoutRoom" (ngSubmit)="makeOfflineBooking(offlineCheckoutRoom)" novalidate>
+              <div class="form-row">
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Guest Name" formControlName="name"
+                      [ngClass]="{'has-error': offlineformErrors.name}">
+                    <mat-error *ngIf="offlineformErrors.name" [innerHTML]="offlineformErrors.name"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput placeholder="Mobile Number" formControlName="mobile"
+                      [ngClass]="{'has-error': offlineformErrors.mobile}">
+                    <mat-error *ngIf="offlineformErrors.mobile" [innerHTML]="offlineformErrors.mobile"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email"
+                      [ngClass]="{'has-error': offlineformErrors.email}">
+                    <mat-error *ngIf="offlineformErrors.email" [innerHTML]="offlineformErrors.email"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label id="example-radio-group-label">Payment Type</label>
+                  <mat-radio-group class="example-radio-group" aria-label="Payment Type"
+                    aria-labelledby="example-radio-group-label" formControlName="payment"
+                    [ngClass]="{'has-error': offlineformErrors.payment}">
+                    <mat-radio-button class="example-radio-button" value="cash">On Counter ( Offline )</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="online">Online</mat-radio-button>
+                  </mat-radio-group>
+                  <mat-error *ngIf="offlineformErrors.payment" [innerHTML]="offlineformErrors.payment"></mat-error>
+                </div>
+                <div class="col-md-12 form-group mb-0">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    Proceed
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fixed-bottom" style="bottom : 58px !important" *ngIf="dataProvider.selectedDeliveryAddress">
+      <a class="btn btn-success btn-lg btn-block" (click)="confirmCheckout($event)">
+        PAY {{ dataProvider.cartTotal }}
+        <i class="feather-arrow-right"></i>
+      </a>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form [formGroup]="addressForm" (ngSubmit)="addAddress(addressForm)" novalidate>
+            <div class="modal-header cart-resize">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Add Delivery Address
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body cart-resize">
+              <div class="form-row">
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Delivery Area</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="area"
+                      [ngClass]="{'has-error': formErrors.area}">
+                    <mat-icon matSuffix><button id="button-addon2" type="button" class="btn btn-outline-secondary">
+                        <i class="feather-map-pin"></i>
+                      </button></mat-icon>
+                    <mat-error *ngIf="formErrors.area" [innerHTML]="formErrors.area"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 form-group">
+                  <google-map height="200px" width="100%" [zoom]="zoom" [center]="center" [options]="options">
+                    <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label" #marker
+                      [title]="marker.title" [options]="marker.options"  (mapDragend)="getMarkerPositon(marker,$event)">
+                    </map-marker>
+                  </google-map>
+                </div>
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Complete Address</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="address"
+                      [ngClass]="{'has-error': formErrors.address}">
+                    <mat-error *ngIf="formErrors.address" [innerHTML]="formErrors.address"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Delivery Instructions</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="instructions">
+                  </mat-form-field>
+                </div>
+                <div class="mb-0 col-md-12 form-group">
+                  <label class="form-label">Nickname</label>
+                  <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                    <mat-button-toggle-group formControlName="nickname" aria-label="Favorite Color" class="w-100">
+                      <mat-button-toggle class="col-4" value="home">Home</mat-button-toggle>
+                      <mat-button-toggle class="col-4" value="office">Office</mat-button-toggle>
+                      <mat-button-toggle class="col-4" value="other">Others</mat-button-toggle>
+                    </mat-button-toggle-group>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer cart-resize p-0 border-0 fixed-bottom">
+              <div class="col-6 m-0 p-0">
+                <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">
+                  Close
+                </button>
+              </div>
+              <div class="col-6 m-0 p-0">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="osahan-payment cart-resize px-3 mb-5 h-100" *ngIf="checkoutType === 'room'">
+    <div class="py-3 osahan-cart-item">
+      <div class="osahan-cart-item-profile bg-white rounded shadow p-3">
+        <div class="d-flex flex-column">
+          <h6 class="mb-2 font-weight-bold">Confirm Booking</h6>
+          <p class="text-info">You are booking {{ checkoutData.name }} for Rs.{{ checkoutData.price }} </p>
+          <div class="pb-5">
+            <form [formGroup]="offlineCheckout" (ngSubmit)="roomBooking(offlineCheckout,$event)" novalidate>
+              <div class="form-row">
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Guest Name</mat-label>
+                    <input matInput placeholder="Guest Name" formControlName="name"
+                      [ngClass]="{'has-error': offlineformErrors.name}">
+                    <mat-error *ngIf="offlineformErrors.name" [innerHTML]="offlineformErrors.name"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" placeholder="Email" formControlName="email"
+                      [ngClass]="{'has-error': offlineformErrors.email}">
+                    <mat-error *ngIf="offlineformErrors.name" [innerHTML]="offlineformErrors.name"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput placeholder="Mobile Number" formControlName="mobile"
+                      [ngClass]="{'has-error': offlineformErrors.mobile}">
+                    <mat-error *ngIf="offlineformErrors.mobile" [innerHTML]="offlineformErrors.mobile"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Aadhaar Number</mat-label>
+                    <input matInput placeholder="Aadhaar Number" formControlName="aadhaarNo"
+                      [ngClass]="{'has-error': offlineformErrors.mobile}">
+                    <mat-error *ngIf="offlineformErrors.aadhaarNo" [innerHTML]="offlineformErrors.aadhaarNo"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label id="example-radio-group-label">Payment Type</label>
+                  <mat-radio-group class="example-radio-group" aria-label="Payment Type"
+                    aria-labelledby="example-radio-group-label" formControlName="payment"
+                    [ngClass]="{'has-error': offlineformErrors.payment}">
+                    <mat-radio-button class="example-radio-button" value="cash">Cash</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="online">Online</mat-radio-button>
+                  </mat-radio-group>
+                  <mat-error *ngIf="offlineformErrors.payment" [innerHTML]="offlineformErrors.payment"></mat-error>
+                </div>
+                <div class="col-md-6 form-group">
+                  <mat-form-field appearance="fill" class="example-form-field w-100">
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [rangePicker]="rangePicker" [min]="minDate">
+                      <input matStartDate placeholder="Start date" formControlName="checkinDate"
+                        [ngClass]="{'has-error': offlineformErrors.checkinDate}">
+                      <input matEndDate placeholder="End date" formControlName="checkoutDate"
+                        [ngClass]="{'has-error': offlineformErrors.checkoutDate}">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #rangePicker [startAt]="minDate" [touchUi]="screenWidth<600">
+                      <mat-date-range-picker-actions>
+                        <button mat-button matDateRangePickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                      </mat-date-range-picker-actions>
+                    </mat-date-range-picker>
+                    <mat-error *ngIf="offlineformErrors.checkinDate" [innerHTML]="offlineformErrors.checkinDate">
+                    </mat-error>
+                    <mat-error *ngIf="offlineformErrors.checkoutDate" [innerHTML]="offlineformErrors.checkoutDate">
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 form-group mb-0">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    Proceed
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fixed-bottom" style="bottom : 58px !important" *ngIf="dataProvider.selectedDeliveryAddress">
+      <a class="btn btn-success btn-lg btn-block" (click)="confirmCheckout($event)">PAY {{ dataProvider.cartTotal }}<i
+          class="feather-arrow-right"></i></a>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form [formGroup]="addressForm" (ngSubmit)="addAddress(addressForm)" novalidate>
+            <div class="modal-header cart-resize">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Add Delivery Address
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body cart-resize">
+              <div class="form-row">
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Delivery Area</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="area"
+                      [ngClass]="{'has-error': formErrors.area}">
+                    <mat-icon matSuffix><button id="button-addon2" type="button" class="btn btn-outline-secondary">
+                        <i class="feather-map-pin"></i>
+                      </button></mat-icon>
+                    <mat-error *ngIf="formErrors.area" [innerHTML]="formErrors.area"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 form-group">
+                  <google-map></google-map>
+                </div>
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Complete Address</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="address"
+                      [ngClass]="{'has-error': formErrors.address}">
+                    <mat-error *ngIf="formErrors.address" [innerHTML]="formErrors.address"></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 form-group">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Delivery Instructions</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="instructions">
+                  </mat-form-field>
+                </div>
+                <div class="mb-0 col-md-12 form-group">
+                  <label class="form-label">Nickname</label>
+                  <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                    <mat-button-toggle-group formControlName="nickname" aria-label="Favorite Color" class="w-100">
+                      <mat-button-toggle class="col-4" value="home">Home</mat-button-toggle>
+                      <mat-button-toggle class="col-4" value="office">Office</mat-button-toggle>
+                      <mat-button-toggle class="col-4" value="other">Others</mat-button-toggle>
+                    </mat-button-toggle-group>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer cart-resize p-0 border-0 fixed-bottom">
+              <div class="col-6 m-0 p-0">
+                <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">
+                  Close
+                </button>
+              </div>
+              <div class="col-6 m-0 p-0">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

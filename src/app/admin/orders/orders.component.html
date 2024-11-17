@@ -1,0 +1,55 @@
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row" style="min-height: 100vh;">
+    <app-sidebar id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white shadow sidebar collapse"></app-sidebar>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Recent Orders</h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 mb-3" *ngFor="let order of orders">
+          <div class="card shadow" *ngIf="order.type=='product'">
+            <div class="card-body">
+              <h5 class="card-title">Order No : {{order.id}}</h5>
+              <!-- <div class="small">+91 {{order.phone}}</div> -->
+              <div class="small">Address :{{order.address.address}}</div>
+              <div class="small">Area :{{order.address.area}}</div>
+              <div class="small">Instructions :{{order.address.instructions}}</div>
+              <!-- <div class="small">Map :</div> -->
+              <!-- <div style="width:200px;height:100%;">
+                <google-map height="200px" width="100%" [zoom]="20" [options]="options">
+                  <map-marker [position]="order.marker.position" [label]="order.marker.label" #marker
+                    [title]="order.marker.title" [options]="order.marker.options" >
+                  </map-marker>
+                </google-map>
+              </div> -->
+              <hr>
+                <p class="order-box"><strong>Items</strong></p>
+                <div class="d-flex mb-2" *ngFor="let product of order.products">
+                  <span class="w-75">{{product.name}}</span> 
+                  <span class="text-muted text-right w-25">Rs. {{product.price}} X {{product.quantity}}</span>
+                </div>
+              <hr>
+              <!-- <a class="card-link">Delivered</a> -->
+              <!-- <a  href="#" class="card-link">View order</a> -->
+            </div>
+          </div>
+          <div class="card shadow" *ngIf="order.type=='room'">
+            <div class="card-body">
+              <h5 class="card-title">Order No : {{order.id}}</h5>
+              <!-- <div class="small">+91 {{order.phone}}</div> -->
+              <div class="small">Room Type :{{order.roomType}}</div>
+              <div class="small">Price :{{order.price}}</div>
+              <div class="small">Guest Name :{{order.name}}</div>
+              <div class="small">Room No. :{{order.roomNo}}</div>
+              <div class="small">Arrival Date. : {{getDate(order.roomStart)}}</div>
+              <div class="small">Departure Date. : {{getDate(order.roomEnd)}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

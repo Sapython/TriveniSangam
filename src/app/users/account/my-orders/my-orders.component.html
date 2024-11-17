@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="osahan-checkout mb-5 height-fill mb-5">
+  <div class="px-3 pt-3 pb-1">
+    <h2 class="font-weight-bold m-0 pt-1 cart-resize with-title">My Orders</h2>
+  </div>
+  <div class="p-3 osahan-cart-item cart-resize ">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12 mb-3" *ngFor="let order of orders">
+        <div class="card shadow" *ngIf="order.type=='product'">
+          <div class="card-body">
+            <h5 class="card-title">Order No : {{order.id}}</h5>
+            <!-- <div class="small">+91 {{order.phone}}</div> -->
+            <div class="small">Address :{{order.address}}</div>
+            <hr>
+              <p class="order-box"><strong>Items</strong></p>
+              <div class="d-flex mb-2" *ngFor="let product of order.products">
+                <span class="w-75">{{product.name}}</span> 
+                <span class="text-muted text-right w-25">Rs. {{product.price}} X {{product.quantity}}</span>
+              </div>
+            <hr>
+            <!-- <a class="card-link">Delivered</a> -->
+            <!-- <a  href="#" class="card-link">View order</a> -->
+          </div>
+        </div>
+        <div class="card shadow" *ngIf="order.type=='room'">
+          <div class="card-body">
+            <h5 class="card-title">Order No : {{order.id}}</h5>
+            <!-- <div class="small">+91 {{order.phone}}</div> -->
+            <div class="small">Room Type :{{order.roomType}}</div>
+            <div class="small">Price :{{order.price}}</div>
+            <div class="small">Guest Name :{{order.name}}</div>
+            <div class="small">Room No. :{{order.roomNo}}</div>
+            <div class="small">Arrival Date. :{{getDate(order.roomStart)}}</div>
+            <div class="small">Departure Date. :{{getDate(order.roomEnd)}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

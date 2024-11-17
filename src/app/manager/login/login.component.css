@@ -1,0 +1,53 @@
+h1{
+    font-size: var(--msmall);
+    font-weight: bold;
+    font-family: var(--font-one);
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.right_cover_img{
+    float: right;
+    margin-top: -80px;
+    margin-right: -20px;
+}
+
+.login-section{
+    width: 430px;
+    margin: 200px 420px;
+    position: relative;
+}
+
+.user-id{
+    margin: 20px 0;
+}
+
+.password{
+    margin: 20px 0;
+}
+
+form i{
+    margin-right: 10px;
+}
+
+form input{
+    width: 45%;
+    background-color: #e7e5e5;
+    border-style: hidden;
+    border-bottom: 1px solid black;
+    font-size: var(--xxsmall);
+    font-family: var(--font-one);
+}
+
+#login-button{
+    background-color: var(--color-four);
+    color: var(--color-one);
+    border: none;
+    width: 120px;
+    border-radius: 8px;
+    margin-left: 60px;
+    margin-top: 40px;
+    padding: 5px;
+    font-size: var(--xsmall);
+    font-family: var(--font-one);
+}

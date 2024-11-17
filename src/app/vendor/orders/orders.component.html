@@ -1,0 +1,33 @@
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row" style="min-height: 100vh;">
+    <app-sidebar id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white shadow sidebar collapse"></app-sidebar>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Orders</h1>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-3">
+          <div class="card shadow bg-primary-blue text-light">
+            <div class="card-body">
+              <h5 class="card-title">#Order ID : 12457861</h5>
+              <h6 class="card-subtitle mb-2">Mr. Sahil Seta</h6>
+              <div class="small">+91 7600122030</div>
+              <div class="small">Address : 53, MG Road, Junagadh.</div>
+              <hr class="bg-white">
+                <h6 class="order-box"><strong>Items</strong></h6>
+                <div class="d-flex mb-2"><span class="w-75">Panner Chilly Dosa</span> <span class="text-right w-25">Rs. 125</span></div>
+                <div class="d-flex mb-2"><span class="w-75">Panner Chilly Dosa</span> <span class="text-right w-25">Rs. 125</span></div>
+                <div class="d-flex mb-2"><span class="w-75">Panner Chilly Dosa</span> <span class="text-right w-25">Rs. 125</span></div>
+              <hr class="bg-white">
+              <a href="#" class="card-link shadow">Prepared</a>
+              <a routerLink="/vendor/orders/view" class="card-link shadow">View order</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

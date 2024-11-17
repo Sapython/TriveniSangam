@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div >
+  <div class="osahan-faq cart-resize with-title">
+    <div class="px-3 pt-3 pb-5 d-flex justify-content-between">
+      <h2 class="font-weight-bold m-0 pt-1 ">
+        Give Feedbacks
+      </h2>
+      <button class="btn btn-primary" routerLink="/feedbacks">Read Feedback</button>
+    </div>
+  </div>
+  <div class="p-5 osahan-cart-item cart-resize bg-white shadow rounded mb-5">
+    <h4 class="mb-3">Every feedback is important to us! please write us so we can appreciate your words!</h4>
+    <form [formGroup]="contactForm" (ngSubmit)="submitContact(contactForm)" novalidate>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Your Name</mat-label>
+          <input matInput placeholder="David mark" formControlName="name" [ngClass]="{'has-error': formErrors.name}">
+          <mat-error *ngIf="formErrors.name" [innerHTML]="formErrors.name"></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Email Address</mat-label>
+          <input matInput formControlName="email" [ngClass]="{'has-error': formErrors.email}" >
+          <mat-error *ngIf="formErrors.email" [innerHTML]="formErrors.email"></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width w-100" appearance="outline">
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput placeholder="Ex. It makes me feel..."  formControlName="comment" [ngClass]="{'has-error': formErrors.comment}"></textarea>
+          <mat-error *ngIf="formErrors.comment" [innerHTML]="formErrors.comment"></mat-error>
+        </mat-form-field>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" >SUBMIT</button>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,133 @@
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row" style="min-height: 100vh;">
+    <app-sidebar id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white shadow sidebar collapse"></app-sidebar>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">{{ pageType }} new Room</h1>
+        <a href="#" class="card-link" routerLink="/ProductManager/rooms">All Rooms</a>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-3">
+          <div class="card shadow py-4 px-3">
+            <form class="row" [formGroup]="addProductForm" (ngSubmit)="addProduct(addProductForm)" novalidate>
+              <div class="mb-3 col-lg-6 col-xs-12">
+                <label for="exampleFormControlInput1" class="form-label">Room Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Product Name" formControlName="name" [ngClass]="{'has-error': formErrors.name}">
+                <span *ngIf="formErrors.name" [innerHTML]="formErrors.name" class="text-danger"></span>
+              </div>
+              <div class="mb-3 col-lg-6 col-xs-12">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" class="form-control" id="price" placeholder="120" formControlName="price" [ngClass]="{'has-error': formErrors.price}">
+                <span *ngIf="formErrors.price" [innerHTML]="formErrors.price" class="text-danger"></span>
+              </div>
+              <div class="mb-3 col-lg-12 col-xs-12">
+                <label for="Description" class="form-label">Description</label>
+                <textarea class="form-control" id="Description" rows="3" formControlName="description" [ngClass]="{'has-error': formErrors.description}"></textarea>
+                <span *ngIf="formErrors.description" [innerHTML]="formErrors.description" class="text-danger"></span>
+              </div>
+              <div class="mb-3 col-lg-12 col-xs-12">
+                <mat-form-field class="example-chip-list w-100" appearance="fill" >
+                  <mat-label>Room Facilities</mat-label>
+                  <mat-chip-list #chipList aria-label="Fruit selection"  >
+                    <mat-chip
+                      *ngFor="let fruit of fruits"
+                      (removed)="remove(fruit, 'f')">
+                      {{fruit}}
+                      <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                    </mat-chip>
+                    <input
+                      placeholder="Add..."
+                      #fruitInput
+                      [formControl]="fruitCtrl"
+                      [matAutocomplete]="auto"
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      (matChipInputTokenEnd)="add($event, 'f')"
+                      >
+                  </mat-chip-list>
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, 'f')">
+                    <mat-option *ngFor="let fruit of filteredFruits | async; index as i;" [value]="fruit">
+                      {{fruit}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <span *ngIf="formErrors.category" [innerHTML]="formErrors.category" class="text-danger" ></span>
+              </div>
+              <div class="mb-3 col-lg-12 col-xs-12">
+                <mat-form-field class="example-chip-list w-100" appearance="fill" >
+                  <mat-label>Room Numbers</mat-label>
+                  <mat-chip-list #chipList1 aria-label="Room Selection"  >
+                    <mat-chip
+                      *ngFor="let room of rooms"
+                      (removed)="remove(room, 'r')">
+                      {{room}}
+                      <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                    </mat-chip>
+                    <input
+                      placeholder="Add..."
+                      #roomInput
+                      [formControl]="roomCtrl"
+                      [matAutocomplete]="auto1"
+                      [matChipInputFor]="chipList1"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      (matChipInputTokenEnd)="add($event, 'r')"
+                      >
+                  </mat-chip-list>
+                  <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selected($event, 'r')">
+                    <mat-option *ngFor="let room of filteredRooms | async; index as i;" [value]="room">
+                      {{room}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+              <div class="mb-3 col-lg-4 col-xs-12">
+                <label for="checkin" class="form-label">ADULTS</label>
+                <input type="text" class="form-control" id="checkin" placeholder="Enter" formControlName="adults">
+              </div>
+              <div class="mb-3 col-lg-4 col-xs-12">
+                <label for="checkout" class="form-label">CHILDRENS</label>
+                <input type="text" class="form-control" id="checkout" placeholder="Enter" formControlName="children">
+              </div>
+              <div class="mb-3 col-lg-4 col-xs-12">
+                <label for="checkout" class="form-label">Room Type</label>
+                <input type="text" class="form-control" id="checkout" placeholder="Enter" formControlName="roomtype">
+              </div>
+              <hr style="border:2px rgb(253, 213, 213) solid; border-radius: 5px;height:0px;width:100%;margin:10px;">
+              <div class="mb-3 col-lg-6 col-xs-12">
+                <label for="price" class="form-label">Large Image 1 (.jpg)</label>
+                <input class="form-control" type="file" id="formFile" accept=".jpg" (change)="setImage('img1','jpg',$event)">
+                <img *ngIf="img1 && pageType === 'Edit'" [src]="img1" class="img-fluid mt-2" width="100px" />
+              </div>
+              <div class="mb-3 col-lg-6 col-xs-12">
+                <label for="price" class="form-label">Large Image 2 (.jpg)</label>
+                <input class="form-control" type="file" id="formFile" accept=".jpg" (change)="setImage('img2','jpg',$event)" >
+                <img *ngIf="img2 && pageType === 'Edit'" [src]="img2" class="img-fluid mt-2" width="100px" />
+              </div>
+              <div class="mb-3 col-lg-6 col-xs-12">
+                <label for="price" class="form-label">Large Image 3 (.jpg)</label>
+                <input class="form-control" type="file" id="formFile" accept=".jpg" (change)="setImage('img3','jpg',$event)">
+                <img *ngIf="img3 && pageType === 'Edit'" [src]="img3" class="img-fluid mt-2" width="100px" />
+              </div>
+              <div class="mb-3 col-lg-6 col-xs-12">
+                <label for="price" class="form-label">Large Image 4 (.jpg)</label>
+                <input class="form-control" type="file" id="formFile" accept=".jpg" (change)="setImage('img4','jpg',$event)">
+                <img *ngIf="img4 && pageType === 'Edit'" [src]="img4" class="img-fluid mt-2" width="100px" />
+              </div>
+              <div class="mb-3 col-lg-12 col-xs-12">
+                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="resetForm()">Clear</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

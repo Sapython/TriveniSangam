@@ -1,0 +1,20 @@
+@media screen and (max-width : 500px) {
+  #desktop-tabs{
+    display: none;
+    visibility: hidden;
+  }
+  #mobile-tabs{
+    display: block;
+    visibility: visible;
+  }
+}
+@media screen and (min-width : 501px) {
+  #desktop-tabs{
+    display: block;
+    visibility: visible;
+  }
+  #mobile-tabs{
+    display: none;
+    visibility: hidden;
+  }
+}

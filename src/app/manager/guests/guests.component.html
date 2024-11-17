@@ -1,0 +1,120 @@
+<div class="guest-upper-bar">
+  <h1>Guests</h1>
+  <div style="display: flex">
+    <div class="search-box">
+      <input type="text" class="manager-search" placeholder="Search" (input)="searchGuests()" #guestSearchInput />
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <span style="margin-left: auto; text-align: right">
+      <button type="button" class="primary-btn" id="add-guest-btn" uk-toggle="target: #guest-modal">
+        <i class="fa-solid fa-plus"></i> Add Guest
+      </button>
+    </span>
+  </div>
+</div>
+
+<section class="guest-main">
+  <div class="guest-status">
+    <table class="guest-status-table">
+      <thead>
+        <tr>
+          <th width="10%">S. No.</th>
+          <th width="20%">Name</th>
+          <th width="20%">Date of Birth</th>
+          <th width="20%">Phone Number</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredGuests && filteredGuests.length != 0; else noGuests">
+        <tr *ngFor="let guest of filteredGuests; let i = index">
+          <td>{{ i + 1 }}.</td>
+          <td>{{ guest.name }}</td>
+          <td>{{ getDate(guest.dob) }}</td>
+          <td>{{ guest.phoneNumber }}</td>
+          <td>
+            <div class="buttons">
+              <button class="primary-btn" (click)="editGuest(guest)" uk-toggle="target: #guest-modal">
+                <i class="fa-solid fa-pen-to-square"></i>Edit
+              </button>
+              <button class="primary-btn" (click)="guestToDelete = guest" uk-toggle="target: #delete-confirm-modal">
+                <i class="fa-solid fa-trash"></i>Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #noGuests>
+        <tbody>
+          <tr>
+            <td colspan="5">No guests found.</td>
+          </tr>
+        </tbody>
+      </ng-template>
+    </table>
+  </div>
+</section>
+
+<div id="guest-modal" (hidden)="guestForm.reset(); guestToEdit = null" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <h2 class="uk-modal-title">{{ guestToEdit ? "Edit" : "Add New" }} Guest</h2>
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <form [formGroup]="guestForm" (ngSubmit)="submit()">
+      <div id="guest-inputs">
+        <div class="guest-form-box">
+          <label class="manager-label" for="name-input">Name</label>
+          <input type="text" id="name-input" class="manager-input" formControlName="name" />
+        </div>
+        <div class="guest-form-box">
+          <label class="manager-label" for="dob-input">Date of Birth</label>
+          <input type="date" id="dob-input" class="manager-input" formControlName="dob" />
+        </div>
+        <div class="guest-form-box">
+          <label class="manager-label" for="phone-input">Phone Number</label>
+          <input type="number" id="phone-input" class="manager-input" formControlName="phoneNumber" />
+        </div>
+        <div class="guest-form-box">
+          <label class="manager-label" for="phone-input">Email</label>
+          <input type="email" id="phone-input" class="manager-input" formControlName="email" />
+        </div>
+        <div class="guest-form-box">
+          <label class="manager-label" for="phone-input">Address</label>
+          <input type="text" id="phone-input" class="manager-input" formControlName="address" />
+        </div>
+        <div class="guest-form-box">
+          <label class="manager-label" for="phone-input">Pan Number</label>
+          <input type="text" id="phone-input" class="manager-input" formControlName="panNumber" />
+        </div>
+        <div class="guest-form-box">
+          <label class="manager-label" for="phone-input">Aadhaar Number</label>
+          <input type="number" id="phone-input" class="manager-input" formControlName="aadhaarNumber" />
+        </div>
+        <div class="guest-form-box">
+          <label class="manager-label" for="phone-input">Pan Image</label>
+          <input type="file" id="phone-input" class="manager-input" (change)="panImage = $event" />
+        </div>
+        <div class="guest-form-box">
+          <label class="manager-label" for="phone-input">Aadhaar Image</label>
+          <input type="file" id="phone-input" class="manager-input" (change)="aadhaarImage = $event" />
+        </div>
+      </div>
+      <button [disabled]="!guestForm.valid" type="submit" id="submit-button" class="primary-btn">
+        {{ guestToEdit ? "Edit" : "Add" }} Guest
+      </button>
+    </form>
+  </div>
+</div>
+
+<div id="delete-confirm-modal" uk-modal (hide)="guestToDelete = null">
+  <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <p class="confirm-text">Confirm delete?</p>
+    <div class="buttons">
+      <button type="button" class="primary-btn confirm-btn" (click)="deleteGuest()">
+        Yes
+      </button>
+      <button type="button" class="primary-btn confirm-btn uk-modal-close">
+        No
+      </button>
+    </div>
+  </div>
+</div>

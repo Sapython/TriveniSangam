@@ -1,0 +1,68 @@
+<app-header></app-header>
+<section [ngStyle]="{'blur': dataProvider.pageSetting.blur ? '5px' : '0px'}">
+  <!-- <button (click)="authService.signInWithGoogle()">Login in with google</button>
+  <button (click)="authService.loginAnonymously()">Sign in anonymously</button> -->
+  <!-- <button (click)="authService.openDialog()">Get dialog data</button> -->
+  <div class="container" [ngClass]="{'active': toggleForm === true}">
+    <div class="user signinBx">
+      <div class="imgBx"><img src="assets/img/login.jpg" alt="" /></div>
+      <div class="formBx">
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit(loginForm)" novalidate>
+          <h2>Sign In</h2>
+          <div class="example-container">
+            <mat-form-field appearance="fill" class="w-100">
+              <input matInput placeholder="Email" formControlName="email" [ngClass]="{'has-error': formErrors.email}">
+              <mat-error *ngIf="formErrors.email" [innerHTML]="formErrors.email"></mat-error>
+            </mat-form-field>
+          </div>
+          <mat-form-field appearance="fill" class="w-100">
+            <input matInput type="password" placeholder="Password" formControlName="password" [ngClass]="{'has-error': formErrors.password}">
+            <mat-error *ngIf="formErrors.password" [innerHTML]="formErrors.password"></mat-error>
+          </mat-form-field>
+          <button class="btn btn-primary btn-block mt-3"  type="submit" >Sign In</button>
+          <p class="signup">
+            Don't have an account ?
+            <a (click)="toggleForm = true">Sign Up.</a>
+          </p>
+          <button type="button" class="btn btn-primary btn-block" (click)="authService.signInWithGoogle('Login')">Login in with google</button>
+          <!-- <button class="btn btn-primary btn-block" (click)="authService.loginAnonymously()">Sign in anonymously</button> -->
+        </form>
+
+      </div>
+    </div>
+    <div class="user signupBx w-100" >
+      <div class="formBx">
+        <form [formGroup]="signUpForm" (ngSubmit)="signupSubmit(signUpForm)" novalidate>
+          <h2>Create an account</h2>
+          <mat-form-field appearance="fill" class="w-100">
+            <input matInput placeholder="Full Name" formControlName="username" [ngClass]="{'has-error': formErrorsSignup.username}">
+            <mat-error *ngIf="formErrorsSignup.username" [innerHTML]="formErrorsSignup.username"></mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="w-100">
+            <input matInput type="email" placeholder="Email Address" formControlName="email" [ngClass]="{'has-error': formErrorsSignup.email}">
+            <mat-error *ngIf="formErrorsSignup.email" [innerHTML]="formErrorsSignup.email"></mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="w-100">
+            <input matInput type="password" placeholder="Create Password" formControlName="password" [ngClass]="{'has-error': formErrorsSignup.password}">
+            <mat-error *ngIf="formErrorsSignup.password" [innerHTML]="formErrorsSignup.password"></mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="w-100">
+            <input matInput type="password" placeholder="Confirm Password" formControlName="cnfpassword" [ngClass]="{'has-error': formErrorsSignup.cnfpassword}">
+            <mat-error *ngIf="formErrorsSignup.cnfpassword" [innerHTML]="formErrorsSignup.cnfpassword"></mat-error>
+          </mat-form-field>
+          <br>
+          <button type="submit"  class="btn btn-primary btn-block mt-3">Sign Up</button>
+          <p class="signup">
+            Already have an account ?
+            <a (click)="toggleForm = false">Sign in.</a>
+          </p>
+          <button type="button" class="btn btn-primary btn-block w-100" (click)="authService.signInWithGoogle('Signup')">Login in with google</button>
+          <!-- <button class="btn btn-primary btn-block" (click)="authService.loginAnonymously()">Sign in anonymously</button> -->
+        </form>
+
+      </div>
+      <div class="imgBx"><img src="assets/img/Business.jpg" alt="" /></div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

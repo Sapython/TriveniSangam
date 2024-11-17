@@ -1,0 +1,56 @@
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row" style="min-height: 100vh;">
+    <app-sidebar id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white shadow sidebar collapse"></app-sidebar>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Rooms</h1>
+        <a href="#" class="card-link" routerLink="/ProductManager/rooms/add">New Room</a>
+        <!-- <a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal">Manage Category</a> -->
+        <!-- <a href="#" class="card-link" routerLink="/admin/products/add">New Product</a> -->
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-3" *ngFor=" let data of rooms;">
+          <div class="card shadow">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4"><img class="card-img-top" src="{{ data.images.img1 }}" alt="{{ data.name }}"></div>
+                <div class="col-8">
+                  <h5 class="card-title">#Product ID : {{ data.id }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ data.name }}</h6>
+                <div class="small">{{ data.description }}</div>
+                <div class="small">Rs. {{ data.price }} /-</div>
+                </div>
+              </div>
+              <hr>
+              <a href="javascript:void(0)" [routerLink]='["/ProductManager","rooms","update", data.id]' class="card-link">Edit</a>
+              <a href="javascript:void(0)" (click)="deleteRoom(data.id)" class="card-link">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="modal fade md" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Alpha beta</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

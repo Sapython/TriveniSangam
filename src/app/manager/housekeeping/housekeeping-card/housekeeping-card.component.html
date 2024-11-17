@@ -1,0 +1,10 @@
+<div class="housekeep_card">
+  <div>
+    <i class="fa-solid fa-broom {{ clean_status }}"></i>
+    <p class="housekeep_roomnum">{{ housekeep_room_number }}</p>
+    <p class="timeBeen">{{timeBeen}}</p>
+  </div>
+  <div class="submit">
+    <button (click)="markClean()">Mark Clean</button>
+  </div>
+</div>

@@ -1,0 +1,252 @@
+p,
+ul {
+    margin: 0;
+    padding: 0;
+}
+.Months{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+height: 8vh;
+box-sizing: border-box;
+padding: 10px;
+}
+.Months button{
+    background-color: var(--color-four);
+    border: none;
+    padding: 8px;
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 5px;
+}
+.Months button:hover{
+    transform: scale(1.02);
+}
+i{
+    padding: 5px;
+}
+#wrapper {
+    padding: 1.5em;
+}
+
+#top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#filters-title {
+    font-size: var(--msmall);
+    font-family: var(--font-one);
+    color: var(--color-two);
+    margin-bottom: .5em;
+    font-weight: 600;
+}
+
+#filters-container {
+    margin-bottom: 2em;
+}
+
+#filters {
+    display: flex;
+}
+
+.filter-title {
+    font-size: var(--xsmall);
+    font-family: var(--font-one);
+    color: var(--color-two);
+    margin-bottom: .25em;
+}
+
+.filter {
+    width: 120px;
+    margin-right: 1em;
+}
+
+.filter-button {
+    width: 100%;
+    background-color: var(--color-eleven);
+    border: none;
+    text-align: left;
+    font-family: var(--font-one);
+    color: var(--color-two);
+    padding: .5em .75em;
+    border-radius: var(--normal-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-dropdown-list {
+    list-style: none;
+    border-radius: var(--normal-radius);
+    background-color: var(--color-eleven);
+}
+
+.filter-dropdown-list-item {
+    font-family: var(--font-one);
+    color: var(--color-two);
+    padding: .5em .75em;
+    border-radius: var(--normal-radius);
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.filter-dropdown-list-item:hover {
+    background-color: var(--color-four);
+    color: var(--color-eleven)
+}
+
+.icon-button {
+    border: none;
+    font-size: var(--msmall);
+    background: none;
+    margin-left: 1.5em;
+    color: var(--color-two);
+    transition: all .5s;
+}
+
+.icon-button:hover {
+    color: var(--color-four);
+}
+
+#control-buttons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+}
+
+#add-room-btn {
+    margin-right: .25em;
+    margin-bottom: .5em;
+}
+
+#month-controls {
+    width: fit-content;
+    margin-left: auto;
+    margin-bottom: .5em;
+}
+
+#month-controls .primary-btn {
+    margin-right: .25em;
+}
+
+#month-controls .primary-btn:last-child {
+    margin: 0;
+}
+
+#table-container {
+    width: 100%;
+}
+
+#table-container {
+    width: 100%;
+    overflow-y: auto;
+}
+
+table {
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    table-layout: fixed;
+    color: var(--color-eleven);
+    font-family: var(--font-one);
+}
+
+th,
+td {
+    min-width: 80px;
+  
+    border-radius: var(--normal-radius);
+}
+
+th {
+    font-weight: 400;
+    text-align: center;
+    background-color: var(--color-two);
+} 
+
+td {
+    background-color: var(--color-fourteen);
+    -moz-user-select: none;
+}
+
+.empty-cell {
+    background: none;
+}
+
+th .cell-container,
+td:not([colspan]) .cell-container {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+}
+
+
+.cell-container {
+    position: relative;
+}
+
+.cell-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: .5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.booked-cell {
+    background-color: var(--color-four);
+    transition: all .5s;
+}
+
+.booked-cell-even {
+    background-color: var(--color-thirteen);
+}
+
+.booked-cell:hover {
+    transform: scale(1.03);
+}
+
+.room-form-box {
+    margin: 1em 0;
+}
+
+label {
+    margin: 0;
+    font-size: var(--xsmall)
+}
+
+.room-form-box input,
+
+.room-form-box select {
+    width: 100%;
+    font-size: var(--xsmall)
+}
+
+#submit-button {
+    margin-top: 1em;
+    width: 100%;
+}
+td{
+    padding:5px;
+}
+th, th > div{
+    width:auto;
+    /* padding-bottom: 30px !important; */
+}
+.selected{
+    border: 3px solid var(--color-four);
+}
+.selector{
+    border: 3px dashed darkgrey;
+    background: rgba(174, 174, 174, 0.188);
+    display: block;
+    position: absolute;
+}

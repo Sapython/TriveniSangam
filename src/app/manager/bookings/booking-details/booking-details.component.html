@@ -1,0 +1,66 @@
+<div class="guest-upper-bar">
+  <h1>Booking Details</h1>
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <i class="fa-solid fa-bell"></i>
+</div>
+
+<section class="guest-main">
+  <button id="edit-guest" >Edit</button>
+  <div class="guest-buttons">
+    <button id="filter-guest" >Type</button>
+    <button class="view-guest">All view</button>
+    <button class="view-guest">Month</button>
+    <button class="view-guest">This Week</button>
+  </div>
+  <div id="guest_details">
+    <div class="guest_column">
+      <b>GUEST</b>
+      <div class="box">
+        <span>{{ name }}</span>
+      </div>
+    </div>
+    <div class="guest_column">
+      <b>PERSONS </b>
+      <div class="box">
+        <span>{{ person }} {{ personType }} </span>
+      </div>
+    </div>
+    <div class="guest_column">
+      <b>PHONE NUMBER</b>
+
+      <div class="box">
+        <span>{{ phoneNo }}</span>
+      </div>
+    </div>
+    <div class="guest_column">
+      <b>CHECK IN</b>
+
+      <div class="box">
+        <span>{{ checkIn }}</span>
+      </div>
+      <div class="box">
+        <span>{{ checkIntime }}</span>
+      </div>
+    </div>
+    <div class="guest_column">
+      <b>CHECK OUT </b>
+
+      <div class="box">
+        <span>{{ checkOut }}</span>
+      </div>
+      <div class="box">
+        <span>{{ checkOuttime }}</span>
+      </div>
+    </div>
+    <div class="guest_column">
+      <b>PAYMENT </b>
+      <div class="box">
+        <span>{{ paymnet }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <button routerLink="../billing" >Save</button>
+    <button>Cancel</button>
+  </div>
+</section>

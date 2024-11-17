@@ -1,0 +1,90 @@
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    background: #fff;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: auto;
+    font-size: 2vw;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+.rating label {
+    margin-bottom: 0px !important;
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before{
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+.container.form-voting .row {
+    display: flex;
+    text-align: center;
+    background: #fff;
+    padding: 10px 0;
+    box-shadow: 0 0 1.875rem 0 rgba(0,0,0,.1);
+        margin-bottom: 30px;
+
+}
+.container.form-voting {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 600px)
+{
+    .rating>label {
+    font-size: 6vw !important;
+}
+}
+
+@media screen and (min-width: 601px) and (max-width: 768px)
+{
+     .rating>label {
+    font-size: 6vw !important;
+}
+}
+label.fillstar:before{
+    opacity: 1 !important
+}
+.ratings-highlight {
+    flex-direction: row !important;
+    align-items: center;
+}
+.ratings-highlight {
+    background: transparent !important;
+    pointer-events: none;
+}
+.single-person-rating {
+    justify-content: left !important;
+    width: auto;
+}
+.single-person-rating>label {
+    font-size: 25px;
+}

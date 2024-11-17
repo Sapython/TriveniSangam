@@ -1,0 +1,20 @@
+.card-link{
+  color: #343a40;
+  font-weight: 700;
+  border: 1px solid;
+  padding: 5px 10px;
+}
+.card-link:hover{
+  color: #343a4069;
+}
+.md{
+  width:auto !important;
+  height:auto !important;
+  margin: 0 auto !important;
+  top:50% !important;
+  left:50% !important;
+  transform:translate(-50%,-50%) !important;
+}
+.md > .modal-dialog > .modal-content{
+  min-height: 200px !important;
+}

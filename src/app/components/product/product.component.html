@@ -1,0 +1,48 @@
+<div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow">
+    <div class="list-card-image">
+        <div class="member-plan position-absolute">
+            <span class="badge badge-dark">{{ categoryName }}</span>
+        </div>
+        <div class="favourite-heart text-danger position-absolute">
+            <img [src]="vegetarian ? 'assets/img/icons/veg.png' : 'assets/img/icons/nonveg.png'" class="veg-dot-ss" style="background-color: white" />
+        </div>
+        <div class="uk-inline-clip uk-transition-toggle">
+            <img [src]="images[0]" class="img-fluid item-img" loading="lazy" />
+            <img [src]="images[1]" class="img-fluid item-img uk-transition-scale-up uk-position-cover" loading="lazy" />
+        </div>
+    </div>
+    <div class="p-3 position-relative">
+        <div class="list-card-body">
+            <div class="dish-contents d-flex">
+                <div class="col-8 col-lg-8 col-md-8 col-xs-8 col-sm-8 pl-0 pr-0 pb-2">
+                    <h6 class="mb-1 mt-1">
+                        <div class="text-black item-nm" (click)="showDetailTrigger()">
+                            {{ name }}
+                        </div>
+                    </h6>
+                </div>
+                <div class=" col-4 col-lg-4 col-md-4 col-xs-4 col-sm-4 pl-0 pr-0 pb-2">
+                    <p class="text-gray mb-0 time">
+                        <span
+                            class=" price-container-ss bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2 price-ss small">
+                            ₹ {{ price }}/-
+                        </span>
+                    </p>
+                </div>
+                <div class="col-12 pl-0 pr-0">
+                    <p class="small mb-3 text-desc">
+                        {{ description }}
+                    </p>
+                </div>
+
+                <div class="col-12 pl-0 pr-0 d-flex justify-content-between">
+                  <app-product-quantity [quantity]="quantity" (cartQuantity)="cartQuantityCheck($event)"></app-product-quantity>
+                    <button class="btn btn-primary btn-sm w-50 btn-block btn-small"
+                        (click)="addToCartTrigger()">
+                        Add To Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

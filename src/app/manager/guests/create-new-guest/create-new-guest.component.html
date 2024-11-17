@@ -1,0 +1,91 @@
+<div id="header">
+  <b id="section_name">Create New Guest Profile</b>
+  <div id="icons">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-bell"></i>
+  </div>
+</div>
+<section class="guest-main">
+  <div class="rows name">
+    <b>Name*</b>
+    <div class="input_conatiner" style="margin-top: 15px">
+      <input type="text" />
+      <label for="">Firstname</label>
+    </div>
+    <div class="input_conatiner" style="margin-top: 15px">
+      <input type="text" />
+      <label for="">Lastname</label>
+    </div>
+  </div>
+  <div class="rows number">
+    <b>Number of Guests*</b>
+    <div class="input_conatiner">
+      <input type="text" id="guest" name="guest" />
+    </div>
+  </div>
+  <div class="rows dateTime">
+    <b>Date & Time*</b>
+    <div class="input_conatiner">
+      <input type="date" />
+    </div>
+    <div class="input_conatiner">
+      <input type="time" />
+    </div>
+    <span>to</span>
+    <div class="input_conatiner">
+      <input type="date" />
+    </div>
+    <div class="input_conatiner">
+      <input type="time" />
+    </div>
+  </div>
+  <div class="rows contactNo">
+    <b>Contact Number* </b>
+    <div class="input_conatiner">
+      <input type="number" />
+    </div>
+  </div>
+  <div class="rows adharNo">
+    <b>Aadhaar Number*</b>
+    <div class="input_conatiner">
+      <input type="number" style="width: 300px" />
+    </div>
+  </div>
+  <div class="rows roomNo">
+    <b>Room Number*</b>
+    <div class="input_conatiner">
+      <input type="text" style="width: 100px" />
+    </div>
+  </div>
+  <div class="rows roomType">
+    <b>Room Type</b>
+    <div id="filters">
+      <div class="filter">
+        <div class="filter-dropdown">
+          <button type="button" class="filter-button">
+            <span class="selected-option">{{ selectedFilters.type }}</span><i class="fa-solid fa-caret-down"></i>
+          </button>
+          <ul uk-dropdown="mode: click" class="filter-dropdown-list">
+            <li class="filter-dropdown-list-item" (click)="selectedFilters.type = 'Single'">
+              All
+            </li>
+
+            <li class="filter-dropdown-list-item" uk-toggle="target: .filter-dropdown-list"
+              (click)="selectedFilters.type = 'Double'">
+              Double
+            </li>
+            <li class="filter-dropdown-list-item" uk-toggle="target: .filter-dropdown-list"
+              (click)="selectedFilters.type = 'Deluxe'">
+              Deluxe
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    <button>Create</button>
+  </div>
+
+
+
+</section>

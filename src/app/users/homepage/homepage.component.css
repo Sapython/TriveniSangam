@@ -1,0 +1,34 @@
+.home-page{
+    margin-top: 40px;
+}
+.hidden-Overflow-x{
+    overflow-x: hidden;
+}
+.featuredBanner{
+    width: 700px;
+    height:auto;
+}
+.relative-center{
+    position: relative;
+    left: 50%;
+    /* margin:0 auto; */
+    transform: translateX(-50%);
+}
+.slideImage{
+    width: 540px !important;
+    height: 300px;
+    object-fit: cover
+}
+.slideContainer{
+    width:540px !important;
+}
+@media only screen and (max-width: 600px) {
+    .slideImage{
+        /* width: 100% !important; */
+        height: 150px !important;
+    }
+    .slideContainer{
+        /* width:100% !important; */
+        height: 150px !important;
+    }
+}

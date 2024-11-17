@@ -1,0 +1,70 @@
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="row" style="min-height: 100vh;">
+    <app-sidebar id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white shadow sidebar collapse"></app-sidebar>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Products</h1>
+        <a href="#" class="card-link" routerLink="/admin/products/add">New Product</a>
+        <a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal">Manage Category</a>
+        <!-- <a href="#" class="card-link" routerLink="/admin/products/add">New Product</a> -->
+      </div>
+      <div class="row" *ngIf="productsData.length != 0">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-3" *ngFor="let product of productsData;">
+          <div class="card shadow">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4"><img class="card-img-top" src="{{product.images.imageOne}}" alt="{{ product.name }}"></div>
+                <div class="col-8">
+                  <h5 class="card-title">#Product ID : {{product.id}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ product.name }}</h6>
+                <div class="small">{{ product.description }}</div>
+                <div class="small">Rs. {{ product.price }} /-</div>
+                </div>
+              </div>
+              <hr>
+              <p class="order-box"><strong>Content</strong></p>
+              <div class="d-flex mb-2"><span class="w-75">category</span> <span class="text-muted text-right w-25">{{ product.category }}</span></div>
+              <div class="d-flex mb-2"><span class="w-75">vegetarian</span> <span class="text-muted text-right w-25">{{ product.vegetarian }}</span></div>
+              <hr>
+              <a (click)="deleteProduct(product.id)" class="card-link">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="productsData.length === 0">No Products added yet.</div>
+    </main>
+  </div>
+</div>
+
+<div class="modal fade md" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body categoryList">
+        <div>
+          <input type="text" (change)="categoryName = category.value" #category>
+          <button (click)="addCategory()"><i class="ri-add-circle-fill"></i></button>
+        </div>
+        <ul>
+          <li *ngFor="let category of categories">
+            <p>{{category}}</p>
+            <button (click)="deleteCategory(category)"><i class="ri-delete-bin-7-fill"></i></button>
+          </li>
+          <li *ngIf="categories.length==0">No category found.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

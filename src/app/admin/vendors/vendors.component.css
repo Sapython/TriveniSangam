@@ -1,0 +1,9 @@
+.card-link{
+  color: #343a40;
+  font-weight: 700;
+  border: 1px solid;
+  padding: 5px 10px;
+}
+.card-link:hover{
+  color: #343a4069;
+}

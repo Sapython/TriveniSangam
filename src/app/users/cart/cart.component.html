@@ -1,0 +1,100 @@
+<app-header></app-header>
+<div class="osahan-checkout mb-5">
+  <div class="px-3 pt-3 pb-1">
+    <h2 class="font-weight-bold m-0 pt-1 cart-resize with-title">Cart</h2>
+  </div>
+  <div class="p-3 osahan-cart-item cart-resize ">
+    <div class="bg-white rounded shadow mb-3 py-2">
+      <h6 class="mb-1 font-weight-bold p-3">Order Summary</h6>
+      <div id="cartdetails">
+        <div class="item-container-single d-flex
+            gold-members
+            align-items-center
+            justify-content-between
+            px-3
+            py-2
+            border-bottom
+            row
+            ml-0
+            mr-0
+            align-items-center
+          " *ngFor="let item of cartItems; index as i;">
+          <div class="media align-items-center addon-grp-checkout col-lg-7 col-md-7 col-sm-12 col-xs-12 pl-0 pr-0">
+            <div class="media-body addon-option-name">
+              <div class="d-flex">
+                <p class="m-0"></p>
+                <div class="mr-2 text-success">·</div>
+                <div class="txt-sizing">{{ item.name }}</div>
+                <p></p>
+              </div>
+            </div>
+          </div>
+          <div class="
+              d-flex
+              justify-content-end
+              align-items-center
+              btns-grp-checkout
+              col-lg-5 col-md-5 col-sm-12 col-xs-12
+              pl-0
+              pr-0
+            ">
+            <div class="grp-it">
+              <app-product-quantity [quantity]="item.quantity" (cartQuantity)="cartQuantityCheck(item.id,$event)">
+              </app-product-quantity>
+              <p class="
+                  text-gray
+                  mb-0
+                  float-right
+                  ml-2
+                  text-muted
+                  small
+                  price-pop
+                ">
+                ₹ {{ item.price }}
+              </p>
+              <button (click)="removeFromCart(item.id)" class="btn"><img src="assets/img/svg/cross.svg" width="14px" /></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="shadow bg-white rounded p-3 clearfix mb-5">
+      <p class="mb-1">
+        Sub Total <span class="float-right text-dark">₹ {{ cartTotal}}</span>
+      </p>
+      <p class="mb-1">
+        Delivery Charges
+        <span class="text-info ml-1"><i class="icofont-info-circle"></i></span><span
+          class="float-right text-danger"><del>₹ 25</del></span>
+      </p>
+      <hr />
+      <h6 class="mb-0 pb-2" style="font-size: 10px">
+        Round Off <span class="float-right">₹ 0.20</span>
+      </h6>
+      <h6 class="font-weight-bold mb-0 pb-2">
+        Grand Total <span class="float-right">₹ {{ cartTotal }}</span>
+      </h6>
+      <button class="
+        btn btn-primary
+        w-100
+        btn-block
+        mt-4
+      " (click)="moveToCheckout()">
+        Next
+      </button>
+    </div>
+    <div class="btns-ss-two fixed-bottom" *ngIf="dataProvider.loggedIn === false">
+      <div class="col-6 m-0 p-0">
+        <button type="button" class="btn btn-primary border-top btn-lg btn-block" routerLink="/sign-up">
+          Login
+        </button>
+      </div>
+      <div class="col-6 m-0 p-0">
+        <button type="button" class="btn btn-primary btn-lg btn-block" routerLink="/sign-up">
+          Sign-up
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

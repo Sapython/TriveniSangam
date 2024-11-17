@@ -1,0 +1,124 @@
+section {
+  padding: 1em;
+  height: 100%;
+  position: relative;
+
+  .topBar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+
+    #update-utilities {
+      margin: 0 0.5em;
+    }
+  }
+
+  .table-container {
+    td {
+      // width: min-content;
+      // padding: 10px 20px;
+      input[name="rate"] {
+        margin-left: 20px;
+      }
+      input {
+        width: 70px;
+        border-radius: 6px;
+        font-size: 20px;
+        // height: 50px;
+        border: none;
+        padding: 10px 5px;
+        background-color: var(--color-four);
+        color: white;
+      }
+      #mic-button {
+        min-width: 35px;
+        min-height: 35px;
+        background-color: var(--color-four);
+        color: var(--color-eleven);
+        border: none;
+        border-radius: 50%;
+        font-size: var(--small);
+        margin-left: 0.5em;
+        cursor: pointer;
+        transition: all 0.5s;
+
+        &:hover {
+          box-shadow: var(--normal-shadow);
+        }
+      }
+    }
+  }
+}
+
+.uk-modal-dialog {
+  form {
+    #utility-inputs {
+      .utility-form-box {
+        margin-top: 1em;
+
+        label {
+          padding-left: 0.5em;
+        }
+
+        input {
+          width: 100%;
+        }
+
+        select {
+          width: 100%;
+        }
+
+        #rate-input-container {
+          position: relative;
+
+          input {
+            padding-left: 1.5em;
+            padding-right: 3em;
+          }
+
+          span {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-four);
+            font-family: var(--font-one);
+            font-size: var(--xsmall);
+          }
+
+          #currency-symbol {
+            left: 0.5em;
+          }
+
+          #per-unit {
+            right: 0.5em;
+          }
+        }
+      }
+      .totalQuantity{
+        display: flex;
+        flex-direction: column;
+        div{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          border-bottom: 2px solid var(--secondary);
+          span{
+            border: none;
+          }
+          p{
+            color: var(--secondary);
+            font-family: var(--font-three);
+            font-size: var(--small);
+          }
+        }
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 0.5em 1em;
+      font-size: var(--xsmall);
+      margin-top: 1em;
+    }
+  }
+}
